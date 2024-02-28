@@ -5,17 +5,19 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
 
-        <link rel="stylesheet" href="/asset/css/reset.css" />
-        <link rel="stylesheet" href="/asset/css/card.css" />
+        <link rel="stylesheet" href="asset/css/card.css" />
+        <link rel="stylesheet" href="asset/css/reset.css" />
     </head>
     <body>
-        <div class="modal">
+        <div class="parenter">
+            <div class="modal ">
             <form class="form">
                 <div class="payment--options">
                     <button name="paypal" type="button">
@@ -92,6 +94,8 @@
                 </div>
                 <button class="purchase--btn">Checkout</button>
             </form>
+        </div>
+            
         </div>
     </body>
 </html>

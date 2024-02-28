@@ -145,7 +145,11 @@ input.input {
     margin-bottom: 130px;
 }
 .title-bank{
-
+    margin-top: 1.2rem;
+    color: #212832;
+    font-family: Open Sans;
+    font-weight: 700;
+    line-height: 5rem;
     font-size: 65px;
     font-weight: 800;
     color:rgb(118,108,218);

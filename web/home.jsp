@@ -13,6 +13,7 @@
             />
         <title>92 Library</title>
     </head>
+
     <header class="header--app">
         <div class="content">
             <div class="header--main">
@@ -40,9 +41,21 @@
                         <a class="navbar--fonts" href="#blog">Blog</a>
                     </li>
                 </ul>
-                <div class="action--btn">
-                    <a class="btn login--btn" href="loginForm.jsp"> Log in </a>
-                    <a class="btn signup--btn" href="register.jsp"> Sign up </a>
+
+                <div class="action--btn action--home">
+                    <div class="user--state">
+                        <%
+                              int randomNumber = (int) (Math.random() * 6) + 1;
+                        %>
+                        <img src="./img/user<%= randomNumber %>.jpg" alt="" class="img--user">
+                        <div class="action--btn login--user">
+                            <a href="#!"><h3 class="user--action login--btn  ">${sessionScope.account.surname}</h3></a>
+                        </div>
+
+                    </div>
+
+
+
                 </div>
             </div>
         </div>
@@ -62,17 +75,16 @@
                         <p class="main--desc">
                             We put together everything needed to build a website and app to make it possible for people to borrow and return books globally. We are the best platform.
                         </p>
-                        <form action="" class="main--fill">
-                            <input
-                                class="main--fill--input"
-                                type="text"
-                                placeholder="Your email address"
-                                />
-                            <button class="btn form--btn">Get Started</button>
-                        </form>
+
                         <p class="legit--email">
-                            *Weâ€™ll respect the inbox and never share your email.
+                            *Reading book now in hear.
                         </p>
+
+                        <div>
+                            <button class="btn btn--featutes">
+                                <span>Get Started</span>
+                            </button>
+                        </div>
                     </article>
                     <article class="right--main">
                         <img class="img--right--main" src="./img/libarry.jpg" alt="alt"/>
@@ -432,7 +444,7 @@
                                 <div class="quotes--item">
                                     <div class="quotes--content--block">
                                         <p class="quotes--content">
-                                                 Fantastic platform for online
+                                            Fantastic platform for online
                                             library. The best online library
                                             platform I have used. Borrow,
                                             return books, and pays  have
@@ -460,7 +472,7 @@
                                 <div class="quotes--item">
                                     <div class="quotes--content--block">
                                         <p class="quotes--content">
-                                               Fantastic platform for online
+                                            Fantastic platform for online
                                             library. The best online library
                                             platform I have used. Borrow,
                                             return books, and pays  have
@@ -486,7 +498,7 @@
                                 <div class="quotes--item">
                                     <div class="quotes--content--block">
                                         <p class="quotes--content">
-                                               Fantastic platform for online
+                                            Fantastic platform for online
                                             library. The best online library
                                             platform I have used. Borrow,
                                             return books, and pays  have
@@ -516,7 +528,7 @@
                                 <div class="quotes--item">
                                     <div class="quotes--content--block">
                                         <p class="quotes--content">
-                                             Fantastic platform for online
+                                            Fantastic platform for online
                                             library. The best online library
                                             platform I have used. Borrow,
                                             return books, and pays  have
@@ -542,7 +554,7 @@
                                 <div class="quotes--item">
                                     <div class="quotes--content--block">
                                         <p class="quotes--content">
-                                               Fantastic platform for online
+                                            Fantastic platform for online
                                             library. The best online library
                                             platform I have used. Borrow,
                                             return books, and pays  have
@@ -617,7 +629,7 @@
                                 <div class="news--block--content">
                                     <h3 class="news-date">July 03, 2022</h3>
                                     <h2 class="news--title">
-                                 This year the team I love will win C1. Bayern will pay the price...
+                                        This year the team I love will win C1. Bayern will pay the price...
                                     </h2>
                                     <a
                                         href="https://www.reuters.com/markets/deals/sandwich-chain-subway-agrees-sell-itself-roark-capital-2023-08-24/"
@@ -687,7 +699,7 @@
                                 <div class="news--block--content">
                                     <h3 class="news-date">July 03, 2022</h3>
                                     <h2 class="news--title">
-                                   How to read books to have magic like Harry Poster...
+                                        How to read books to have magic like Harry Poster...
                                     </h2>
                                     <a
                                         href="https://www.reuters.com/business/little-relief-indebted-canadian-homeowners-mortgage-rates-seen-higher-longer-2023-08-23/"
@@ -986,7 +998,7 @@
                             <div>
                                 <h3 class="title--footer">Head Office</h3>
                                 <p class="desc--title">
-                                    92Team Â© 2024. FPT University Danang FUDA, Da Nang Viet Nam 550000.
+                                    92Team © 2024. FPT University Danang FUDA, Da Nang Viet Nam 550000.
                                 </p>
                                 <h3 class="title--fill--footer">News letter</h3>
 
@@ -1016,11 +1028,11 @@
                            ><h3 class="animate-charcter">Telephone:</h3>
                             (84)00885324624</a
                         >
-                          <a href="#!" class="email--company"
+                        <a href="#!" class="email--company"
                            ><h3 class="animate-charcter">Donate</h3>
                             Timo By Ban Viet 0335598434</a
                         >
-                            
+
                     </div>
                 </div>
             </div>
@@ -1028,10 +1040,11 @@
         <div class="banner">
             <div class="banner--block">
                 <h3 class="copyright">
-                    Â© 2024 Power By 92Team Corp.
+                    © 2024 Power By 92Team Corp.
                 </h3>
             </div>
         </div>
         <script src="./js/main.js"></script>
     </body>
+
 </html>
