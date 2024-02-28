@@ -16,6 +16,10 @@
         <servlet-name>BookServlet</servlet-name>
         <servlet-class>controller.BookServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogoutCustomer</servlet-name>
+        <servlet-class>controller.LogoutCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -31,5 +35,9 @@
     <servlet-mapping>
         <servlet-name>BookServlet</servlet-name>
         <url-pattern>/book</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutCustomer</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 </web-app>

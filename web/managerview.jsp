@@ -13,6 +13,9 @@
         <link rel="stylesheet" href="asset/css/reset.css" />
         <link rel="stylesheet" href="asset/css/styles.css" />
         <link rel="stylesheet" href="asset/css/managerview.css" />
+        <link rel="stylesheet" href="asset/css/logoutin.css" />
+
+
 
     </head>
     <body>
@@ -50,8 +53,13 @@
                                   int randomNumber = (int) (Math.random() * 6) + 1;
                             %>
                             <img src="./img/user<%= randomNumber %>.jpg" alt="" class="img--user">
-                            <div class="action--btn login--user">
-                                <a href="#!"><h3 class="user--action login--btn  ">${sessionScope.account.surname}</h3></a>
+                            <div class="action--btn login--user dropdown">
+                                <h3 class="user--action login--btn dropdown-button ">Admin
+                                    <div class="dropdown-content">
+                                        <a class="item-list" href="#">Setting</a>
+                                        <a class="item-list" href="logout">Log Out</a>
+                                    </div>
+                                </h3>
                             </div>
 
                         </div>

@@ -4,9 +4,6 @@
  */
 package controller;
 
-import dao.BookDAO;
-import dao.CategoryDAO;
-import dao.PublisherDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,18 +11,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
-import java.util.List;
-import model.Book;
-import model.Category;
-import model.Manager;
-import model.Publisher;
 
 /**
  *
  * @author ASUS
  */
-public class BookServlet extends HttpServlet {
+public class LogoutCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -44,10 +35,10 @@ public class BookServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BookServlet</title>");
+            out.println("<title>Servlet LogoutCustomer</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet BookServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LogoutCustomer at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -65,27 +56,10 @@ public class BookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String action = request.getParameter("action");
         HttpSession session = request.getSession();
-        Manager m = (Manager) session.getAttribute("manageraccount");
-        if (action.equals("add") && m != null) {
-            PublisherDAO pd = new PublisherDAO();
-            CategoryDAO cd = new CategoryDAO();
-            List<Publisher> listPublisher = pd.getAll();
-            List<Category> listCategory = cd.getAll();
-            request.setAttribute("dataPub", listPublisher);
-            request.setAttribute("dataCate", listCategory);
-            request.getRequestDispatcher("addnewbook.jsp").forward(request, response);
-        } else if (action.equals("show") && m != null) {
-            BookDAO cd = new BookDAO();
-            List<Book> list = cd.getAll();
-            request.setAttribute("listbook", list);
-            request.getRequestDispatcher("listbook.jsp").forward(request, response);
+        session.removeAttribute("account");
+        response.sendRedirect("index.html");
 
-        } else {
-            response.sendRedirect("notfound.jsp");
-
-        }
     }
 
     /**
@@ -99,29 +73,7 @@ public class BookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        Manager m = (Manager) session.getAttribute("manageraccount");
-        if (m != null) {
-
-            String namebook = request.getParameter("namebook");
-            int publisherid = Integer.parseInt(request.getParameter("publisherid"));
-            String author = request.getParameter("authorname");
-            int categoryid = Integer.parseInt(request.getParameter("categoryid"));
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            int year = Integer.parseInt(request.getParameter("yearpublisher"));
-            String img = request.getParameter("img");
-            PublisherDAO pd = new PublisherDAO();
-            CategoryDAO cd = new CategoryDAO();
-            Category c = cd.findById(categoryid);
-            Publisher p = pd.findById(publisherid);
-            Book b = new Book(namebook, author, c, p, year, img, quantity);
-            BookDAO bd = new BookDAO();
-            bd.insert(b);
-            response.sendRedirect("book?action=show");
-        } else {
-            response.sendRedirect("notfound.jsp");
-        }
-
+        processRequest(request, response);
     }
 
     /**
