@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.BillDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,12 +12,16 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Checkout;
+import model.Customer;
+import model.Item;
 
 /**
  *
  * @author ASUS
  */
-public class LogoutCustomer extends HttpServlet {
+public class AddOrder extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +40,10 @@ public class LogoutCustomer extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogoutCustomer</title>");
+            out.println("<title>Servlet AddOrder</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogoutCustomer at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddOrder at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,9 +62,18 @@ public class LogoutCustomer extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        session.invalidate();
-        response.sendRedirect("index.html");
-
+        Checkout checkout = (Checkout)session.getAttribute("checkout");
+        List<Item> listItem = checkout.getList();
+        BillDAO bd = new BillDAO();
+        Customer cs = (Customer) session.getAttribute("account");
+        if (cs != null) {            
+            bd.addBill(cs,checkout);
+            listItem.clear();
+         
+        }
+        else { 
+        response.sendRedirect("notfound.jsp");
+        }
     }
 
     /**

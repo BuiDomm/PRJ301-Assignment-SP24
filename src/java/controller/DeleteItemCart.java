@@ -11,12 +11,15 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import model.Checkout;
+import model.Item;
 
 /**
  *
  * @author ASUS
  */
-public class LogoutCustomer extends HttpServlet {
+public class DeleteItemCart extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +38,10 @@ public class LogoutCustomer extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogoutCustomer</title>");
+            out.println("<title>Servlet DeleteItemCart</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogoutCustomer at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteItemCart at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,9 +59,13 @@ public class LogoutCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        session.invalidate();
-        response.sendRedirect("index.html");
+        Checkout checkout = (Checkout) session.getAttribute("checkout");
+        List<Item> listItem = checkout.getList();
+        listItem.remove(id);
+        session.setAttribute("checkout", checkout);
+        response.sendRedirect("cartlist.jsp");
 
     }
 

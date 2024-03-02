@@ -101,25 +101,30 @@ public class BookServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Manager m = (Manager) session.getAttribute("manageraccount");
-        if (m != null) {
 
-            String namebook = request.getParameter("namebook");
-            int publisherid = Integer.parseInt(request.getParameter("publisherid"));
-            String author = request.getParameter("authorname");
-            int categoryid = Integer.parseInt(request.getParameter("categoryid"));
-            int quantity = Integer.parseInt(request.getParameter("quantity"));
-            int year = Integer.parseInt(request.getParameter("yearpublisher"));
-            String img = request.getParameter("img");
-            PublisherDAO pd = new PublisherDAO();
-            CategoryDAO cd = new CategoryDAO();
-            Category c = cd.findById(categoryid);
-            Publisher p = pd.findById(publisherid);
-            Book b = new Book(namebook, author, c, p, year, img, quantity);
-            BookDAO bd = new BookDAO();
-            bd.insert(b);
-            response.sendRedirect("book?action=show");
-        } else {
+        try {
+            if (m != null) {
+                String namebook = request.getParameter("namebook");
+                int publisherid = Integer.parseInt(request.getParameter("publisherid"));
+                String author = request.getParameter("authorname");
+                int categoryid = Integer.parseInt(request.getParameter("categoryid"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                int year = Integer.parseInt(request.getParameter("yearpublisher"));
+                String img = request.getParameter("img");
+                PublisherDAO pd = new PublisherDAO();
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(categoryid);
+                Publisher p = pd.findById(publisherid);
+                Book b = new Book(namebook, author, c, p, year, img, quantity);
+                BookDAO bd = new BookDAO();
+                bd.insert(b);
+                response.sendRedirect("book?action=show");
+            } else {
+                response.sendRedirect("notfound.jsp");
+            }
+        } catch (Exception e) {
             response.sendRedirect("notfound.jsp");
+
         }
 
     }

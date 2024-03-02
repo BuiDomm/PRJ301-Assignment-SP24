@@ -4,6 +4,7 @@
  */
 package controller;
 
+import dao.BookDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,12 +12,17 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+import model.Book;
+import model.Checkout;
+import model.Item;
 
 /**
  *
  * @author ASUS
  */
-public class LogoutCustomer extends HttpServlet {
+public class AddToCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,10 +41,10 @@ public class LogoutCustomer extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogoutCustomer</title>");
+            out.println("<title>Servlet AddToCartServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogoutCustomer at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,10 +62,48 @@ public class LogoutCustomer extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        session.invalidate();
-        response.sendRedirect("index.html");
+        int quantity = 1;
+        int id;
+        BookDAO bd = new BookDAO();
+        if (request.getParameter("id") != null) {
+            id = Integer.parseInt(request.getParameter("id"));
+            Book b = bd.findById(id);
+            if (b != null) {
+                HttpSession session = request.getSession();
+                if (session.getAttribute("checkout") == null) {
+                    Checkout checkout = new Checkout();
+                    List<Item> listItems = new ArrayList<Item>();
+                    Item item = new Item();
+                    item.setQuantity(quantity);
+                    item.setBook(b);
+                    listItems.add(item);
+                    checkout.setList(listItems);
+                    session.setAttribute("checkout", checkout);
+                } else {
+                    Checkout checkout = (Checkout) session.getAttribute("checkout");
+                    List<Item> listItem = checkout.getList();
+                    boolean check = false;
+                    for (Item item : listItem) {
+                        if (item.getBook().getIdBook() == b.getIdBook()) {
+                            check = true;
+                            String mess = "You had this book";
+                            session.setAttribute("mess", mess);
+                        }
+                    }
+                    if (check == false) {
+                        Item item = new Item();
+                        item.setQuantity(quantity);
+                        item.setBook(b);
+                        listItem.add(item);
+                    }
+                    session.setAttribute("checkout", checkout);
+                }
+            }
+            response.sendRedirect("cartlist.jsp");
+        } else {
+            response.sendRedirect("cartlist.jsp");
 
+        }
     }
 
     /**

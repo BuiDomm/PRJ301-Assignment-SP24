@@ -4,19 +4,41 @@
  */
 package model;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+import javax.swing.text.DateFormatter;
 
 /**
  *
  * @author ASUS
  */
 public class Checkout {
+
     private int idCheckout;
-    private Date startTime;
-    private Date endTime;
-    private Book book;
+    private String startTime;
+    private List<Item> list;
     private Customer account;
     private boolean isReturn;
+
+    public Checkout() {
+    }
+
+    public Checkout(int idCheckout, String startTime, List<Item> list, Customer account, boolean isReturn) {
+        this.idCheckout = idCheckout;
+        this.startTime = startTime;
+        this.list = list;
+        this.account = account;
+        this.isReturn = isReturn;
+    }
+
+    public Checkout(String startTime, List<Item> list, Customer account, boolean isReturn) {
+        this.startTime = startTime;
+        this.list = list;
+        this.account = account;
+        this.isReturn = isReturn;
+    }
 
     public int getIdCheckout() {
         return idCheckout;
@@ -26,32 +48,31 @@ public class Checkout {
         this.idCheckout = idCheckout;
     }
 
-    public Date getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Date startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Date getEndTime() {
-        return endTime;
+
+
+    public List<Item> getList() {
+        return list;
     }
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
-    public Book getBook() {
-        return book;
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
+    public void setList(List<Item> list) {
+        this.list = list;
     }
 
     public Customer getAccount() {
         return account;
+    }
+
+    @Override
+    public String toString() {
+        return "Checkout{" + "idCheckout=" + idCheckout + ", startTime=" + startTime + ", list=" + list + ", account=" + account + ", isReturn=" + isReturn + '}';
     }
 
     public void setAccount(Customer account) {
@@ -66,9 +87,5 @@ public class Checkout {
         this.isReturn = isReturn;
     }
 
-    @Override
-    public String toString() {
-        return "Checkout{" + "idCheckout=" + idCheckout + ", startTime=" + startTime + ", endTime=" + endTime + ", book=" + book + ", account=" + account + ", isReturn=" + isReturn + '}';
-    }
-    
+ 
 }

@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Manager View 92Lib</title>
+             <title>92 Library</title>
         <link rel="stylesheet" href="asset/css/reset.css" />
         <link rel="stylesheet" href="asset/css/styles.css" />
         <link rel="stylesheet" href="asset/css/managerview.css" />

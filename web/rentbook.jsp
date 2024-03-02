@@ -30,8 +30,8 @@
                             shine for the next future career.
                         </p>
                     </div>
-                    <a href="book?action=add" class="btn--news">
-                        <span>Add book</span>
+                    <a href="home.jsp" class="btn--news">
+                        <span>Back Home</span>
                     </a>
 
                 </div>
@@ -72,8 +72,8 @@
                             </div>
 
                             <div class="icon--list">
-                                <a href="update?id=${pb.idBook}"><i class="fa-regular fa-pen-to-square"></i></a>
-                                <a href="#!" onclick=handlerDelete(${pb.idBook})> <i class ="fa-solid fa-eraser" ></i></a>
+                                <a href="addtocart?id=${pb.idBook}"><i class="fa-solid fa-cart-shopping"></i></a>
+                                <a href="#!" > <i class="fa-solid fa-heart"></i></a>
 
                             </div>
                         </div>
@@ -84,15 +84,6 @@
                 </div>
             </div>
 
-            <script>
-                function handlerDelete(bookid) {
-                    if (confirm("Do you want to delete " + bookid)) {
-                        window.location.href = "delete?id=" + bookid;
-                    }
-                }
 
-
-
-            </script>        
     </body>    
 </html>

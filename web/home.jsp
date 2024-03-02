@@ -30,7 +30,7 @@
                 </a>
                 <ul class="nav--bar__topheader">
                     <li class="navbar--item" >
-                        <a class="navbar--fonts" href="#home">Home</a>
+                        <a class="navbar--fonts" href="bookrent">Home</a>
                     </li>
                     <li class="navbar--item">
                         <a class="navbar--fonts" href="#product">Product</a>
@@ -88,7 +88,7 @@
 
                         <div>
                             <button class="btn btn--featutes">
-                                <span>Get Started</span>
+                                <span> <a href="customerbook" style="color: #fff;">Get Started</a></span>
                             </button>
                         </div>
                     </article>

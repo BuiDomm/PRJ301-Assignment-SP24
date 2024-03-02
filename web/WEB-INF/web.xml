@@ -20,6 +20,42 @@
         <servlet-name>LogoutCustomer</servlet-name>
         <servlet-class>controller.LogoutCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateBook</servlet-name>
+        <servlet-class>controller.UpdateBook</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleBookServlet</servlet-name>
+        <servlet-class>controller.DeleBookServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>controller.SearchServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerBook</servlet-name>
+        <servlet-class>controller.CustomerBook</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <servlet-class>controller.AddToCartServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteItemCart</servlet-name>
+        <servlet-class>controller.DeleteItemCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddOrder</servlet-name>
+        <servlet-class>controller.AddOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BookStorage</servlet-name>
+        <servlet-class>controller.BookStorage</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RefundBook</servlet-name>
+        <servlet-class>controller.RefundBook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -39,5 +75,41 @@
     <servlet-mapping>
         <servlet-name>LogoutCustomer</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateBook</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleBookServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerBook</servlet-name>
+        <url-pattern>/customerbook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCartServlet</servlet-name>
+        <url-pattern>/addtocart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteItemCart</servlet-name>
+        <url-pattern>/deleteitem</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOrder</servlet-name>
+        <url-pattern>/addorder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookStorage</servlet-name>
+        <url-pattern>/bookrent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RefundBook</servlet-name>
+        <url-pattern>/refundbook</url-pattern>
     </servlet-mapping>
 </web-app>

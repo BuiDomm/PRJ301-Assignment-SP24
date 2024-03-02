@@ -50,7 +50,27 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
 
     @Override
     public Customer findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "SELECT * FROM customeraccount \n"
+                + "Where id_username =? ";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id_username = rs.getInt(1);
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String firstName = rs.getString("first_name");
+                String surname = rs.getString("surname");
+                String email = rs.getString("email");
+                String phone = rs.getString("phonenumber");
+                Customer c = new Customer(id_username,username, password, firstName, surname, email, phone);
+                
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
@@ -110,6 +130,7 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
         }
         return false;
     }
+
     public static void main(String[] args) {
         CustomerDAO cd = new CustomerDAO();
 //        System.out.println(cd.login("ndm252003", "nhandeptrai"));

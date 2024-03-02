@@ -68,13 +68,13 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
                 Publisher p = pd.findById(rs.getInt("id_publisher"));
                 CategoryDAO cd = new CategoryDAO();
                 Category c = cd.findById(rs.getInt("id_category"));
-                int id_book = rs.getInt(1);
+                int id_book = rs.getInt("id_book");
                 String name_book = rs.getString("name_book");
                 String author = rs.getString("author");
                 String img = rs.getString("img_book");
 
                 int year_pushlisher = rs.getInt("year_publisher");
-                int count = rs.getInt("count");
+                int count = rs.getInt("amount");
                 return new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
             }
         } catch (Exception ex) {
@@ -97,7 +97,6 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
             ps.setInt(5, newObject.getYearDate());
             ps.setString(6, newObject.getImg());
             ps.setInt(7, newObject.getCount());
-
             int rowAffect = ps.executeUpdate();
             if (rowAffect > 0) {
 
@@ -118,7 +117,7 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
                 + "id_publisher = ?, \n"
                 + "year_publisher = ?,\n"
                 + "img_book = ?, \n"
-                + "amout = ?"
+                + "amount = ?"
                 + " where id_book = ? ";
         PreparedStatement ps;
         try {
@@ -130,6 +129,7 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
             ps.setInt(5, oldObject.getYearDate());
             ps.setString(6, oldObject.getImg());
             ps.setInt(7, oldObject.getCount());
+            ps.setInt(8, oldObject.getIdBook());
 
             int rowAffect = ps.executeUpdate();
             if (rowAffect > 0) {
@@ -162,17 +162,122 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
         return false;
     }
 
+    public List<Book> listbyPage(List<Book> list, int start, int end) {
+
+        ArrayList<Book> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
+
+    public List<Book> findBook(String nameBook, String nameAuthor) {
+
+        List<Book> list = new ArrayList<>();
+        CategoryDAO cd = new CategoryDAO();
+
+        if (!nameBook.isBlank() && !(nameAuthor.isBlank())) {
+            String sql = "SELECT * FROM Book "
+                    + "WHERE LOWER(name_book) LIKE LOWER(N'%' + ? + '%') AND LOWER(author) LIKE LOWER(N'%' + ? + '%')";
+
+            try {
+                PreparedStatement ps = getConnection().prepareStatement(sql);
+                ps.setString(1, nameBook);
+                ps.setString(2, nameAuthor);
+
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int id_book = rs.getInt(1);
+                    String name_book = rs.getString("name_book");
+                    String author = rs.getString("author");
+                    int id_category = rs.getInt("id_category");
+                    int id_publisher = rs.getInt("id_publisher");
+                    int year_pushlisher = rs.getInt("year_publisher");
+                    String img = rs.getString("img_book");
+                    Category c = cd.findById(id_category);
+                    PublisherDAO pd = new PublisherDAO();
+                    Publisher p = pd.findById(id_publisher);
+                    int count = rs.getInt("amount");
+                    Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                    list.add(b);
+
+                }
+                System.out.println("Hey");
+            } catch (Exception ex) {
+                Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        } else if (!nameBook.isBlank()) {
+         String sql = "SELECT * FROM Book "
+            + "WHERE name_book LIKE N'%' + ? + '%'";
+
+            try {
+                PreparedStatement ps = getConnection().prepareStatement(sql);
+                ps.setString(1, nameBook);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int id_book = rs.getInt(1);
+                    String name_book = rs.getString("name_book");
+                    String author = rs.getString("author");
+                    int id_category = rs.getInt("id_category");
+                    int id_publisher = rs.getInt("id_publisher");
+                    int year_pushlisher = rs.getInt("year_publisher");
+                    String img = rs.getString("img_book");
+                    Category c = cd.findById(id_category);
+                    PublisherDAO pd = new PublisherDAO();
+                    Publisher p = pd.findById(id_publisher);
+                    int count = rs.getInt("amount");
+                    Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                    list.add(b);
+                    System.out.println("Giua");
+
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else if (!nameAuthor.isBlank()) {
+                   String sql = "SELECT * FROM Book "
+            + "WHERE author LIKE N'%' + ? + '%'";
+
+
+            try {
+                PreparedStatement ps = getConnection().prepareStatement(sql);
+                ps.setString(1, nameAuthor);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int id_book = rs.getInt(1);
+                    String name_book = rs.getString("name_book");
+                    String author = rs.getString("author");
+                    int id_category = rs.getInt("id_category");
+                    int id_publisher = rs.getInt("id_publisher");
+                    int year_pushlisher = rs.getInt("year_publisher");
+                    String img = rs.getString("img_book");
+                    Category c = cd.findById(id_category);
+                    PublisherDAO pd = new PublisherDAO();
+                    Publisher p = pd.findById(id_publisher);
+                    int count = rs.getInt("amount");
+                    Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                    list.add(b);
+                    System.out.println("Cuoi");
+                }
+            } catch (Exception ex) {
+                Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            String sql = " Select * from Book\n";
+            list = getAll();
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws ParseException {
         BookDAO bd = new BookDAO();
         CategoryDAO cd = new CategoryDAO();
         Category c = cd.findById(1);
         PublisherDAO pb = new PublisherDAO();
         Publisher p = pb.findById(1);
-        Book b = new Book("Đàn bà khó hiểu đúng hok ?", "Bui Nhan", c, p, 2022, "hjhj.jpg", 2);
-//        bd.insert(b);
-        System.out.println(b);
-        bd.delete(4);
 
+        System.out.println(bd.findBook("", "Nhi"));
     }
 
 }
