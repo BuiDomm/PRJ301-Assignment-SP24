@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="asset/css/reset.css" />
 <link rel="stylesheet" href="asset/css/cart.css" />
 <link rel="stylesheet" href="asset/css/styles.css" />
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
 
 <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
 <!DOCTYPE html>
@@ -52,44 +54,44 @@
         <figcaption> 
             <p class="empty--block--img empty-cap quotes--content"> Oops ~_~ You haven't book in the cart.</p>      
             <figcaption>
-        </c:if>
+            </c:if>
 
-        <c:if test="${not empty sessionScope.checkout.list}">
-            <c:forEach var="c" items="${sessionScope.checkout.list}">
+            <c:if test="${not empty sessionScope.checkout.list}">
+                <c:forEach var="c" items="${sessionScope.checkout.list}">
 
 
 
-                <form class="process_bottom" action="addorder">
+                    <form class="process_bottom" action="addorder">
 
-                    <div class="process__list-item">
-                        <div class="process__item ">
-                            <div class="process__row">
-                                <figure class="img-list-cart">
-                                    <img src="./img-prj/${c.book.img}"  class="process__row__number"/>
+                        <div class="process__list-item">
+                            <div class="process__item ">
+                                <div class="process__row">
+                                    <figure class="img-list-cart">
+                                        <img src="./img-prj/${c.book.img}"  class="process__row__number"/>
 
+                                    </figure>
+                                    <h3 class="process__row__title">${c.book.name}</h3>
+                                    <div> 
+                                        <h2 class="process__row__desc"> Category: ${c.book.category.name}</h2>
+                                        <h2 class="process__row__desc">Publisher: ${c.book.publisher.name} </h2>
+                                    </div>
+
+                                    <div><a href="deleteitem?id=${c.idItem}"> <i class="fa-solid fa-trash icon-fix"></i></a>  </div>
+                                </div> 
+                                <a href="#!" class="process__item__learnMore">Learn More</a>
+                                <figure class="process__block-img">
+                                    <img src="./assets/img/process-img.png" alt="" class="process__img">
                                 </figure>
-                                <h3 class="process__row__title">${c.book.name}</h3>
-                                <div> 
-                                    <h2 class="process__row__desc"> Category: ${c.book.category.name}</h2>
-                                    <h2 class="process__row__desc">Publisher: ${c.book.publisher.name} </h2>
-                                </div>
-
-                                <div><a href="deleteitem?id=${c.idItem}"> <i class="fa-solid fa-trash icon-fix"></i></a>  </div>
-                            </div> 
-                            <a href="#!" class="process__item__learnMore">Learn More</a>
-                            <figure class="process__block-img">
-                                <img src="./assets/img/process-img.png" alt="" class="process__img">
-                            </figure>
-                            <div class="process__hr"></div>
-                        </div>
-                    </c:forEach>
-                    <button type="submit" class="btn--news btn--news-submit">
-                        <span>Rent Book</span>
-                    </button>   
-                </div>
+                                <div class="process__hr"></div>
+                            </div>
+                        </c:forEach>
+                        <button type="submit" class="btn--news btn--news-submit">
+                            <span>Rent Book</span>
+                        </button>   
+                    </div>
 
 
-            </form>
-        </c:if>
-    </body>
-</html>
+                </form>
+            </c:if>
+            </body>
+            </html>

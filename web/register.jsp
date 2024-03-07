@@ -5,9 +5,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-                            <title>92 Library</title>
+        <title>92 Library</title>
         <link rel="stylesheet" href="asset/css/reset.css"/>
         <link rel="stylesheet" href="asset/css/register.css"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
     </head>
     <body>
         <div class="main">
@@ -46,12 +48,12 @@
                     <input class="input" type="email" placeholder="" required="" name="email">
                     <span>Email</span>
                 </label>
-                   <label>
-                       <input class="input" type="number" placeholder="" required="" name="phone">
+                <label>
+                    <input class="input" type="number" placeholder="" required="" name="phone">
                     <span>Phone</span>
                 </label>
                 <button class="submit">Submit</button>
-                                <h2 class="Notification"></h2>
+                <h2 class="Notification"></h2>
 
                 <p class="signin">Already have an acount ? <a href="loginForm.jsp">Signin</a> </p>
             </form>

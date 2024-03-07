@@ -13,6 +13,8 @@
         <title>92 Library</title>
         <link rel="stylesheet" href="asset/css/reset.css"/>
         <link rel="stylesheet" href="asset/css/loginform.css"/>
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
 
     </head>
     <body>
@@ -55,6 +57,6 @@
             </form>
 
         </div>
-                <a href="managerlogin.jsp" style="display: inline-block;float: right; margin-top: -35px;"> Switch Login with Manager</a>
+        <a href="managerlogin.jsp" style="display: inline-block;float: right; margin-top: -35px;"> Switch Login with Manager</a>
     </body>
 </html>

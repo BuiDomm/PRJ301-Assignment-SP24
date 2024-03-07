@@ -17,6 +17,8 @@
         <link rel="stylesheet" href="asset/css/renderlist.css" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
 
     </head>
     <body>

@@ -6,12 +6,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 -->
 <html>
     <head>
-                           <title>92 Library</title>
+        <title>92 Library</title>
 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="asset/css/reset.css" />
         <link rel="stylesheet" href="asset/css/erorr.css" />
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
     </head>
     <body>
         <section class="page_404">
