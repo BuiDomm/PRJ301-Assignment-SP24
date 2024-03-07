@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Checkout;
+import model.Customer;
 import model.Item;
 
 /**
@@ -61,11 +62,16 @@ public class DeleteItemCart extends HttpServlet {
             throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         HttpSession session = request.getSession();
-        Checkout checkout = (Checkout) session.getAttribute("checkout");
-        List<Item> listItem = checkout.getList();
-        listItem.remove(id);
-        session.setAttribute("checkout", checkout);
-        response.sendRedirect("cartlist.jsp");
+        Customer cs = (Customer) session.getAttribute("account");
+        if ( id > 0  && cs != null) {
+            Checkout checkout = (Checkout) session.getAttribute("checkout");
+            List<Item> listItem = checkout.getList();
+            listItem.remove(id);
+            session.setAttribute("checkout", checkout);
+            response.sendRedirect("cartlist.jsp");
+
+        }
+        else response.sendRedirect("notfound.jsp");
 
     }
 

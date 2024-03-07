@@ -31,7 +31,7 @@ public class BillDAO extends DBContext {
 
     public void addBill(Customer c, Checkout cout) {
         LocalDate curDate = LocalDate.now();
-        String date = curDate.getYear() + "-" + curDate.getMonth() + "-" + curDate.getDayOfMonth() + "";
+        String date = curDate.getYear() + "-" + curDate.getMonthValue()+ "-" + curDate.getDayOfMonth() + "";
         try {
             String sql = "Insert Into Bill(id_customer,start_time,is_returned) \n"
                     + "Values(?,?,?)";

@@ -69,6 +69,7 @@ public class AddOrder extends HttpServlet {
         if (cs != null) {            
             bd.addBill(cs,checkout);
             listItem.clear();
+            response.sendRedirect("bookrent");
          
         }
         else { 

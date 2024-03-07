@@ -11,6 +11,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import model.Customer;
 
 /**
  *
@@ -56,10 +58,15 @@ public class RefundBook extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        BillDAO bd = new BillDAO();
-        int id = Integer.parseInt(request.getParameter("id"));
-        bd.refundBook(id);
-        response.sendRedirect("bookrent");
+        HttpSession session = request.getSession();
+        if ((Customer) (session.getAttribute("account")) != null) {
+            BillDAO bd = new BillDAO();
+            int id = Integer.parseInt(request.getParameter("id"));
+            bd.refundBook(id);
+            response.sendRedirect("bookrent");
+        } else {
+            response.sendRedirect("notfound.jsp");
+        }
     }
 
     /**

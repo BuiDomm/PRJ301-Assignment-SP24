@@ -30,9 +30,16 @@
                             shine for the next future career.
                         </p>
                     </div>
-                    <a href="book?action=add" class="btn--news">
-                        <span>Add book</span>
-                    </a>
+                    <div>
+                        <a href="managerview.jsp" class="btn--news btn--bgc">
+                            <span>Back Home</span>
+                        </a>
+
+                        <a href="book?action=add" class="btn--news">
+                            <span>Add book</span>
+                        </a>
+
+                    </div>
 
                 </div>
                 <form class="form--search" method="get" action="search" >

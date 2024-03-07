@@ -23,7 +23,7 @@
         <header class="header--app">
             <div class="content">
                 <div class="header--main">
-                    <a href="#!" class="logo--action" onclick="scrollToTop()">
+                    <a href="home.jsp" class="logo--action" onclick="scrollToTop()">
                         <figure class="logo">
                             <img
                                 src="./img/logo-app.svg"
@@ -56,11 +56,13 @@
             </c:if>
 
             <c:if test="${not empty sessionScope.listBill}">
-
+                <c:set var="countting" value="0" />
 
                 <c:forEach var="c" items="${sessionScope.listBill}">
+
                     <c:set var="booleanValue" value="${c.isReturn}" />
                     <c:if test="${booleanValue}">
+                        <c:set var="countting" value="${countting + 1 }" />
 
                         <form class="process_bottom" action="addorder">
 
@@ -94,25 +96,41 @@
                             </c:if>
 
                         </c:forEach>
-                        <button type="submit" class="btn--news btn--news-submit">
-                            <span>Hover me for fun bro</span>
-                        </button>   
-                    </div>
+                 
 
 
                 </form>
-            </c:if>
+                <c:if test="${countting == 0}">
+                    <figure class="empty--block--img">
+                        <img src="./img/empty.jpg" class="empty--img"/>
+                    </figure>
+                    <figcaption> 
+                        <p class="empty--block--img empty-cap quotes--content"> Oops ~_~ You haven't book in the cart.</p>      
+                        <figcaption>
 
-            <script>
-                function handleToReturn(idBill) {
-                    if (confirm("Do you want to refund this order ? " + idBill)) {
-                        window.location.href = "refundbook?id=" + idBill;
-                    }
-                }
+                        </c:if>
+
+                    </c:if> 
+
+                    <c:if test = "${countting != 0}">
+                        <button type="submit" class="btn--news btn--news-submit">
+                            <span>Hover me for fun bro</span>
+                        </button>   
+
+                    </c:if>       
 
 
-            </script>   
+
+                    <script>
+                        function handleToReturn(idBill) {
+                            if (confirm("Do you want to refund this order ? " + idBill)) {
+                                window.location.href = "refundbook?id=" + idBill;
+                            }
+                        }
 
 
-            </body>
-            </html>
+                    </script>   
+
+
+                    </body>
+                    </html>
