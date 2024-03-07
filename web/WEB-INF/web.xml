@@ -56,6 +56,14 @@
         <servlet-name>RefundBook</servlet-name>
         <servlet-class>controller.RefundBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DetailHandle</servlet-name>
+        <servlet-class>controller.DetailHandle</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SortBook</servlet-name>
+        <servlet-class>controller.SortBook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -111,5 +119,14 @@
     <servlet-mapping>
         <servlet-name>RefundBook</servlet-name>
         <url-pattern>/refundbook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DetailHandle</servlet-name>
+        <url-pattern>/detaillist</url-pattern>
+        <load-on-startup>1</load-on-startup>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SortBook</servlet-name>
+        <url-pattern>/sortbook</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -31,9 +31,13 @@
                         </p>
                     </div>
                     <div>
-                        <a href="managerview.jsp" class="btn--news btn--bgc">
-                            <span>Back Home</span>
-                        </a>
+                        <div>
+                            <a href="managerview.jsp" class="btn--news btn--bgc">
+                                <span>Back Home</span>
+                            </a>
+                       
+
+                        </div>
 
                         <a href="book?action=add" class="btn--news">
                             <span>Add book</span>

@@ -925,3 +925,20 @@ input--search:hover {
 .btn--bgc {
     background: #7264d6;
 }
+.ul-sort {
+    margin-top: 10px;
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 1.2;
+
+
+}
+
+.ul-sort a {
+    color: #5f5b53;
+}
+
+.ul-sort a:hover {
+    text-decoration:underline;
+
+}

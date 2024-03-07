@@ -164,6 +164,42 @@ a {
     transform: rotate(45deg);
     transition-duration: 0.3s;
 }
+
+
+
+.popup {
+    width: 700px;
+    background-color: #fff;
+
+
+    text-align: center;
+    padding: 0 30px 30px;
+    color: #333;
+    visibility: hidden;
+    transition: transform 0.4s, top 0.4s;
+    z-index: 999;
+    border-radius: 11px;
+
+}
+
+.popup button {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px 0;
+    background-color: #6fd649;
+    color: #fff;
+    border: 0;
+    outline: none;
+    font-size: 18px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.open-popup {
+    margin-left:30%;
+    visibility: visible;
+    z-index: 999;
+}
+
 .hero__watch--circle {
     display: flex;
     align-items: center;
@@ -201,6 +237,12 @@ a {
 }
 .hero__watch-video:hover .hero__watch-video__play {
     background-color: var(--primary-color);
+}
+
+.opaci-bill {
+    background-color: #ccc;
+    /*opacity: 0.5;*/
+
 }
 .hero__play__click {
     margin-left: 8px;
@@ -613,10 +655,12 @@ __block__item {
 .process__item {
     position: relative;
     height: 197px;
-    /*border-radius: 33px;*/
+    border-radius: 12px;
     padding-top: 18px;
     padding-left: 20px;
+    padding-right: 45px;
     /*width: 100%;*/
+
 }
 .process__item:hover .process__hr {
     display: none;
@@ -624,9 +668,12 @@ __block__item {
 .process__item:hover .process__item__learnMore {
     display: inline-block;
     text-decoration: underline;
+
 }
 .process__item:hover {
     background: #e2eddf;
+
+
 }
 .process__row {
     display: flex;
@@ -808,6 +855,7 @@ __block__item {
 .video__play-btn:hover {
     cursor: pointer;
     opacity: 0.7;
+
 }
 /* ==========Share Css============= */
 
@@ -1281,6 +1329,52 @@ __block__item {
 .hero__watch-video__play:hover{
     transform: rotate(-375deg);
     transition-duration: 0.3s;
-     color: #7264d6;
-     font-size: 22px;
+    color: #7264d6;
+    font-size: 22px;
+}
+.item--bill {
+    position: relative;
+    width: 100%;
+    display: flex;
+    margin-top: 55px;
+}
+.img--item--bill {
+    width: 80px;
+}
+.img--bill-item {
+    width: 100%;
+    object-fit: cover;
+}
+.top-right--bil {
+    margin-left: 20px;
+}
+.desc--bookdetail {
+    color: #696d76;
+    font-family: Open Sans;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-align: start;
+
+}
+.title--book {
+    text-align: start;
+}
+.left-right--bill {
+    margin-top: 10px;
+    margin-left: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+.item--bill::before {
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background:linear-gradient(
+        180deg,
+        #83a17d 4.17%,
+        rgba(131, 161, 125, 0) 36.46%
+        )
 }

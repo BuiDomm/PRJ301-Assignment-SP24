@@ -30,9 +30,21 @@
                             shine for the next future career.
                         </p>
                     </div>
-                    <a href="home.jsp" class="btn--news">
-                        <span>Back Home</span>
-                    </a>
+                    <div>
+                        <a href="home.jsp" class="btn--news">
+                            <span>Back Home</span>
+                        </a>
+                        <div class="ul-sort">
+                            <ul>
+                                <li><a href="sortbook?action=az">Sort by A->Z</a></li>
+                                <li><a href="sortbook?action=za">Sort by Z->A</a></li>
+                                <li><a href="sortbook?action=ry">Sort by recent year </a></li>
+                                <li><a href="sortbook?action=fu">Sort by year further </a></li>
+
+                            </ul>
+                        </div>
+
+                    </div>
 
                 </div>
                 <form class="form--search" method="get" action="search" >

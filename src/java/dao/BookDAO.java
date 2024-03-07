@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.text.ParseException;
@@ -81,6 +82,37 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
             Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public List<Book> listBookByIdBill(int id) {
+        List<Book> list = new ArrayList<>();
+        String sql = "Select * FROM Billdetail\n"
+                + "JOIN book On Billdetail.id_book = book.id_book\n"
+                + "Where id_bill = ?";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(rs.getInt("id_publisher"));
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(rs.getInt("id_category"));
+                int id_book = rs.getInt("id_book");
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                String img = rs.getString("img_book");
+
+                int year_pushlisher = rs.getInt("year_publisher");
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
     }
 
     @Override
@@ -171,6 +203,127 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
         return arr;
     }
 
+    public List<Book> sortBookAZ() {
+        String sql = "Select * FROM book \n"
+                + "Order By name_book Asc";
+        List<Book> list = new ArrayList();
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(rs.getInt("id_publisher"));
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(rs.getInt("id_category"));
+                int id_book = rs.getInt("id_book");
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                String img = rs.getString("img_book");
+
+                int year_pushlisher = rs.getInt("year_publisher");
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+
+    }
+
+    public List<Book> sortBookZA() {
+        String sql = "Select * FROM book \n"
+                + "Order By name_book DESC";
+        List<Book> list = new ArrayList();
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(rs.getInt("id_publisher"));
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(rs.getInt("id_category"));
+                int id_book = rs.getInt("id_book");
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                String img = rs.getString("img_book");
+
+                int year_pushlisher = rs.getInt("year_publisher");
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+
+    }
+
+    public List<Book> sortBookYearFar() {
+        String sql = "Select * FROM book \n"
+                + "Order By year_publisher Asc";
+        List<Book> list = new ArrayList();
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(rs.getInt("id_publisher"));
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(rs.getInt("id_category"));
+                int id_book = rs.getInt("id_book");
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                String img = rs.getString("img_book");
+
+                int year_pushlisher = rs.getInt("year_publisher");
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+
+    }
+    
+        public List<Book> sortBookYearNear() {
+        String sql = "Select * FROM book \n"
+                + "Order By year_publisher DESC";
+        List<Book> list = new ArrayList();
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(rs.getInt("id_publisher"));
+                CategoryDAO cd = new CategoryDAO();
+                Category c = cd.findById(rs.getInt("id_category"));
+                int id_book = rs.getInt("id_book");
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                String img = rs.getString("img_book");
+
+                int year_pushlisher = rs.getInt("year_publisher");
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return list;
+
+    }
+
+
     public List<Book> findBook(String nameBook, String nameAuthor) {
 
         List<Book> list = new ArrayList<>();
@@ -208,8 +361,8 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
             }
 
         } else if (!nameBook.isBlank()) {
-         String sql = "SELECT * FROM Book "
-            + "WHERE name_book LIKE N'%' + ? + '%'";
+            String sql = "SELECT * FROM Book "
+                    + "WHERE name_book LIKE N'%' + ? + '%'";
 
             try {
                 PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -236,9 +389,8 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
                 Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (!nameAuthor.isBlank()) {
-                   String sql = "SELECT * FROM Book "
-            + "WHERE author LIKE N'%' + ? + '%'";
-
+            String sql = "SELECT * FROM Book "
+                    + "WHERE author LIKE N'%' + ? + '%'";
 
             try {
                 PreparedStatement ps = getConnection().prepareStatement(sql);
@@ -272,12 +424,7 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
 
     public static void main(String[] args) throws ParseException {
         BookDAO bd = new BookDAO();
-        CategoryDAO cd = new CategoryDAO();
-        Category c = cd.findById(1);
-        PublisherDAO pb = new PublisherDAO();
-        Publisher p = pb.findById(1);
 
-        System.out.println(bd.findBook("", "Nhi"));
     }
 
 }

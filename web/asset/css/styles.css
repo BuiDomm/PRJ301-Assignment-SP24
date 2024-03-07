@@ -508,6 +508,17 @@ a {
     font-weight: 700;
     line-height: 5rem; /* 125% */
 }
+.heading--content-back{
+    display: inline-block;
+    margin-top: 1.2rem;
+    margin-right: 180px;
+    color: blue;
+    font-family: Open Sans;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 5rem;
+
+}
 .item--content-rightblock {
     margin-top: 7rem;
 }
@@ -1384,7 +1395,7 @@ a {
     border-radius: 12px;
 }
 
-.user--state:hover{ 
+.user--state:hover{
     background-color:#e8e8e8 ;
 }
 .user--action{
