@@ -64,6 +64,14 @@
         <servlet-name>SortBook</servlet-name>
         <servlet-class>controller.SortBook</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuthorSevlet</servlet-name>
+        <servlet-class>controller.PublisherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePubServlet</servlet-name>
+        <servlet-class>controller.DeletePubServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -128,5 +136,13 @@
     <servlet-mapping>
         <servlet-name>SortBook</servlet-name>
         <url-pattern>/sortbook</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorSevlet</servlet-name>
+        <url-pattern>/publisher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePubServlet</servlet-name>
+        <url-pattern>/deletepublisher</url-pattern>
     </servlet-mapping>
 </web-app>

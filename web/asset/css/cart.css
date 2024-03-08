@@ -678,12 +678,15 @@ __block__item {
 .process__row {
     display: flex;
     align-items: center;
-    gap: 0 64px;
+    gap: 0 40px;
 }
 .process__row__number {
     width: 109px;
     font-family: var(--second-font);
     height: 100%;
+}
+.process__img_more { 
+    height: 152.6px;
 }
 .process__row__title {
     width: 350px;

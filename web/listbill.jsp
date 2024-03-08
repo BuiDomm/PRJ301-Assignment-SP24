@@ -80,7 +80,7 @@
                                       int randomNumber = (int) (Math.random() * 32) + 1;
                                                     %>
 
-                                                    <img src="./img-prj/${c.list[0].book.img}"  class="process__row__number"/>
+                                                    <img src="./img-prj/${c.list[0].book.img}"  class="process__row__number process__img_more"/>
 
                                                 </figure>
                                                 <h3 class="process__row__title process__row__title-bill">${c.list[0].book.name}</h3>

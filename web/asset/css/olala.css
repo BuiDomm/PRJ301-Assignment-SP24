@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Mar 9, 2024, 1:25:10 AM
+    Author     : ASUS
+*/
+
+.heading--content-back{
+    display: inline-block;
+    margin-top: 1.2rem;
+    margin-right: 180px;
+    color: blue;
+    font-family: Open Sans;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 5rem;
+
+}

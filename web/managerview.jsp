@@ -103,8 +103,8 @@
                         <ul class="features-list features-list-v">
                             <a href="book?action=show" class="feature-item-v"> <li class="feature-item ">List of available books</li></a>
                             <a href="book?action=add" class="feature-item-v"> <li class="feature-item ">Add new book</li></a>
-                            <a href="#!" class="feature-item-v"> <li class="feature-item ">Update book </li></a>
-                            <a href="#!" class="feature-item-v"> <li class="feature-item ">Remove</li></a>
+                            <a href="publisher?action=add" class="feature-item-v"> <li class="feature-item ">Add new Publisher</li></a>
+                            <a href="publisher?action=show" class="feature-item-v"> <li class="feature-item ">List of Publisher</li></a>
 
                         </ul>
                     </article>
