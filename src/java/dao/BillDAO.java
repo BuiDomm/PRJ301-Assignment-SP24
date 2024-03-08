@@ -31,7 +31,7 @@ public class BillDAO extends DBContext {
 
     public void addBill(Customer c, Checkout cout) {
         LocalDate curDate = LocalDate.now();
-        String date = curDate.getYear() + "-" + curDate.getMonthValue()+ "-" + curDate.getDayOfMonth() + "";
+        String date = curDate.getYear() + "-" + curDate.getMonthValue() + "-" + curDate.getDayOfMonth() + "";
         try {
             String sql = "Insert Into Bill(id_customer,start_time,is_returned) \n"
                     + "Values(?,?,?)";
@@ -52,6 +52,13 @@ public class BillDAO extends DBContext {
                     st2.setInt(2, i.getBook().getIdBook());
                     st2.setInt(3, 1);
                     st2.executeUpdate();
+                    String sql3 = "UPDATE book\n"
+                            + "SET amount = amount -1 \n"
+                            + "WHERE id_book = ?";
+                    PreparedStatement st3 = getConnection().prepareStatement(sql3);
+                    st3.setInt(1, i.getBook().getIdBook());
+                    st3.executeUpdate();
+
                 }
             }
 
@@ -79,7 +86,7 @@ public class BillDAO extends DBContext {
                 boolean is_return = rs.getBoolean("is_returned");
                 List<Item> listItem = getItemByIDBill(id_bill);
                 Customer com = comd.findById(id_customer);
-                Checkout c = new Checkout(id_bill,date, listItem, com, is_return);
+                Checkout c = new Checkout(id_bill, date, listItem, com, is_return);
                 list.add(c);
 
             }
@@ -120,14 +127,22 @@ public class BillDAO extends DBContext {
         String sql = " Update Bill\n"
                 + "SET is_returned = 0\n"
                 + "Where id_bill = ?";
-             PreparedStatement ps;
-                     try {
+        PreparedStatement ps;
+        try {
             ps = getConnection().prepareStatement(sql);
             ps.setInt(1, id_bill);
-            
-         
 
             int rowAffect = ps.executeUpdate();
+            
+            
+                String sql2 = "UPDATE book\n"
+                    + "SET amount = amount +1 \n"
+                    + "FROM Bill AS B\n"
+                    + "JOIN Billdetail ON Billdetail.id_bill = B.id_bill\n"
+                    + "WHERE B.id_bill = ? AND book.id_book = Billdetail.id_book;";
+                PreparedStatement ps2 = getConnection().prepareStatement(sql2);
+                ps2.setInt(1, id_bill);
+                ps2.executeUpdate();
             if (rowAffect > 0) {
                 return true;
             }
@@ -135,7 +150,7 @@ public class BillDAO extends DBContext {
             Logger.getLogger(BillDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
-    
+
     }
 
     public static void main(String[] args) {

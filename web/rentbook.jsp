@@ -17,6 +17,7 @@
         <link rel="stylesheet" href="asset/css/renderlist.css" />
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
 
@@ -57,40 +58,82 @@
                     </button>
                 </form>
                 <div class="body">
-                    <c:forEach var="pb" items="${listbook}"> 
 
-                        <div class="item">
-                            <a href="#!">
-                                <img
-                                    src="./img-prj/${pb.img}"
-                                    alt="item1"
-                                    class="img-popular"
-                                    />
-                            </a>
-                            <div class="info">
-                                <div class="row">
-                                    <h3 class="title-item line-clamp"><a href="#!">${pb.name}</a></h3>
-                                    <div class="rates">
-                                        <p class="desc-popular line-clamp line-2">
-                                            ${pb.category.name}
-                                        </p>
+                    <c:forEach var="pb" items="${listbook}"> 
+                        <c:if test="${pb.count ==0}">
+                            <div class="item outofstock">
+                                <a href="#!">
+                                    <img
+                                        src="./img-prj/${pb.img}"
+                                        alt="item1"
+                                        class="img-popular"
+                                        />
+                                </a>
+                                <div class="info">
+                                    <div class="row">
+                                        <h3 class="title-item line-clamp"><a href="#!">${pb.name}</a></h3>
+                                        <div class="rates">
+                                            <p class="desc-popular line-clamp line-2">
+                                                ${pb.category.name}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="desc-popular line-clamp line-2">
+                                        ${pb.publisher.name}
+                                    </p>
+                                    <div class="row row-price">
+                                        <strong class="price">${pb.author}</strong>
+                                        <h3 class="title-item line-clamp"><a href="#!">${pb.publisher.name}</a></h3>
                                     </div>
                                 </div>
-                                <p class="desc-popular line-clamp line-2">
-                                    ${pb.publisher.name}
-                                </p>
-                                <div class="row row-price">
-                                    <strong class="price">${pb.author}</strong>
-                                    <h3 class="title-item line-clamp"><a href="#!">${pb.publisher.name}</a></h3>
+
+                                <div class="icon--list">
+                                    <a href="notfound.jsp"><i style="font-size: 18px;color: red" class="fa fa-exclamation-circle"></i></a>
+                                    <a href="#!"><i class="fa-solid fa-heart"></i></a>
+
                                 </div>
-                            </div>
-
-                            <div class="icon--list">
-                                <a href="addtocart?id=${pb.idBook}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                <a href="#!" > <i class="fa-solid fa-heart"></i></a>
+                                <p class="amount-book" style="float: right; color: red">This product is temporarily out of stock</p>  
 
                             </div>
-                        </div>
+
+
+                        </c:if>
+                        <c:if test="${pb.count>0}">
+                            <div class="item">
+                                <a href="#!">
+                                    <img
+                                        src="./img-prj/${pb.img}"
+                                        alt="item1"
+                                        class="img-popular"
+                                        />
+                                </a>
+                                <div class="info">
+                                    <div class="row">
+                                        <h3 class="title-item line-clamp"><a href="#!">${pb.name}</a></h3>
+                                        <div class="rates">
+                                            <p class="desc-popular line-clamp line-2">
+                                                ${pb.category.name}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <p class="desc-popular line-clamp line-2">
+                                        ${pb.publisher.name}
+                                    </p>
+                                    <div class="row row-price">
+                                        <strong class="price">${pb.author}</strong>
+                                        <h3 class="title-item line-clamp"><a href="#!">${pb.publisher.name}</a></h3>
+                                    </div>
+                                </div>
+
+                                <div class="icon--list">
+                                    <a href="addtocart?id=${pb.idBook}"><i class="fa-solid fa-cart-shopping"></i></a>
+                                    <a href="#!" > <i class="fa-solid fa-heart"></i></a>
+
+                                </div>
+                                <p class="amount-book" style="float: right">${pb.count} book left</p>  
+
+                            </div>
+                        </c:if>
 
                     </c:forEach>
 

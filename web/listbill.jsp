@@ -80,10 +80,10 @@
                                       int randomNumber = (int) (Math.random() * 32) + 1;
                                                     %>
 
-                                                    <img src="./img-prj/book<%= randomNumber %>.jpg"  class="process__row__number"/>
+                                                    <img src="./img-prj/${c.list[0].book.img}"  class="process__row__number"/>
 
                                                 </figure>
-                                                <h3 class="process__row__title">${c.list[0].book.name}</h3>
+                                                <h3 class="process__row__title process__row__title-bill">${c.list[0].book.name}</h3>
                                                 <div> 
 
                                                     <h2 class="process__row__desc"> Amount: ${fn:length(c.list)}</h2>

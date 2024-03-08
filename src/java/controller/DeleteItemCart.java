@@ -60,19 +60,25 @@ public class DeleteItemCart extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        HttpSession session = request.getSession();
-        Customer cs = (Customer) session.getAttribute("account");
-        if ( id > 0  && cs != null) {
-            Checkout checkout = (Checkout) session.getAttribute("checkout");
-            List<Item> listItem = checkout.getList();
-            listItem.remove(id);
-            session.setAttribute("checkout", checkout);
-            response.sendRedirect("cartlist.jsp");
 
+        if (request.getParameter("id") != null) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            HttpSession session = request.getSession();
+            Customer cs = (Customer) session.getAttribute("account");
+            if (cs != null) {
+                Checkout checkout = (Checkout) session.getAttribute("checkout");
+                List<Item> listItem = checkout.getList();
+                listItem.remove(id);
+                session.setAttribute("checkout", checkout);
+                response.sendRedirect("cartlist.jsp");
+
+            } else {
+                response.sendRedirect("notfound.jsp");
+            }
+
+        } else {
+            response.sendRedirect("notfound.jsp");
         }
-        else response.sendRedirect("notfound.jsp");
-
     }
 
     /**

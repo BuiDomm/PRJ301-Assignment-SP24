@@ -42,11 +42,11 @@
                 </div>
 
                 <div style="margin-left:-90px;margin-top: 10px;">
-                    <input type="checkbox" name="rem" /> <i style="
-                                                            transition: .4s ease-in-out;
-                                                            color: white;
-                                                            font-weight: 600;
-                                                            font-family: Open Sans, sans-serif;">Remember me </i> 
+                    <input type="checkbox" name="rem" ${cookie.crem != null ?"checked":""} /> <i style="
+                                                                                                      transition: .4s ease-in-out;
+                                                                                                      color: white;
+                                                                                                      font-weight: 600;
+                                                                                                      font-family: Open Sans, sans-serif;">Remember me </i> 
                 </div>
                 <h3 style="color: red; font-weight: 600;">${requestScope.error}</h3>
                 <div class="btn">

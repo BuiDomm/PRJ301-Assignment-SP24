@@ -4,6 +4,7 @@
  */
 package controller;
 
+import com.sun.source.tree.RequiresTree;
 import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpSession;
  *
  * @author ASUS
  */
-public class LoginCustomerServlet extends HttpServlet  {
+public class LoginCustomerServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,7 +76,7 @@ public class LoginCustomerServlet extends HttpServlet  {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         String rem = request.getParameter("rem");
-          
+        HttpSession session = request.getSession();
 
         Cookie cuser = new Cookie("cuser", user);
         Cookie cpass = new Cookie("cpass", pass);
@@ -85,6 +86,7 @@ public class LoginCustomerServlet extends HttpServlet  {
             cuser.setMaxAge(60 * 60 * 24 * 7);
             cpass.setMaxAge(60 * 60 * 24 * 7);
             crem.setMaxAge(60 * 60 * 24 * 7);
+            
         } else {
             cuser.setMaxAge(0);
             cpass.setMaxAge(0);
@@ -93,24 +95,20 @@ public class LoginCustomerServlet extends HttpServlet  {
         response.addCookie(cuser);
         response.addCookie(cpass);
         response.addCookie(crem);
-        HttpSession session = request.getSession();
-        CustomerDAO cd = new CustomerDAO();
         
+           
+        CustomerDAO cd = new CustomerDAO();
+
         if (cd.login(user, pass) != null) {
             session.setAttribute("account", cd.login(user, pass));
-//            request.setAttribute(rem, cd);
+            
             response.sendRedirect("loader_1.jsp");
         } else {
             request.setAttribute("error", "Tên đăng nhập hoặc mật khẩu không hợp lệ!");
             request.getRequestDispatcher("loginForm.jsp").forward(request, response);
         }
-        
-        
 
-      
-        
     }
-    
 
     /**
      * Returns a short description of the servlet.

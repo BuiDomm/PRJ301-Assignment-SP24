@@ -1378,3 +1378,7 @@ __block__item {
         rgba(131, 161, 125, 0) 36.46%
         )
 }
+.process__row__title-bill {
+    width: 450px;   
+
+}

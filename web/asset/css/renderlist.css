@@ -826,6 +826,11 @@ information .right {
     visibility: visible;
 
 }
+
+.popular .body .item:hover .amount-book{
+    visibility: visible;
+
+}
 .input--search {
     max-width: 190px;
     background-color: #f5f5f5;
@@ -941,4 +946,16 @@ input--search:hover {
 .ul-sort a:hover {
     text-decoration:underline;
 
+}
+.amount-book {
+    visibility: hidden;
+    color: #212832;
+    font-family: Open Sans;
+    font-size: 1.4rem;
+    font-weight: 600;
+    line-height: 3rem;
+    margin-right: 10px;
+}
+.outofstock {
+ opacity: 0.5;
 }
