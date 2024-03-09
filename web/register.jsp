@@ -8,10 +8,13 @@
         <title>92 Library</title>
         <link rel="stylesheet" href="asset/css/reset.css"/>
         <link rel="stylesheet" href="asset/css/register.css"/>
+                <link rel="stylesheet" href="asset/css/styles.css" />
+
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
     </head>
     <body>
+        <jsp:include page="include/headerlogin.jsp"></jsp:include>
         <div class="main">
 
             <div class="right">

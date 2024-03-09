@@ -72,6 +72,14 @@
         <servlet-name>DeletePubServlet</servlet-name>
         <servlet-class>controller.DeletePubServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HandleFogort</servlet-name>
+        <servlet-class>controller.HandleFogort</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChanglePass</servlet-name>
+        <servlet-class>controller.ChanglePass</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -144,5 +152,13 @@
     <servlet-mapping>
         <servlet-name>DeletePubServlet</servlet-name>
         <url-pattern>/deletepublisher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HandleFogort</servlet-name>
+        <url-pattern>/fogort</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChanglePass</servlet-name>
+        <url-pattern>/changlepass</url-pattern>
     </servlet-mapping>
 </web-app>

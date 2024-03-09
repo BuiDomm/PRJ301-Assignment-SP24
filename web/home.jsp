@@ -35,7 +35,7 @@
                         <a class="navbar--fonts" href="bookrent">Bookstorage</a>
                     </li>
                     <li class="navbar--item">
-                        <a class="navbar--fonts" href="#product">Product</a>
+                        <a class="navbar--fonts" href="customerbook">Product</a>
                     </li>
                     <li class="navbar--item">
                         <a class="navbar--fonts" href="#feature">Features</a>

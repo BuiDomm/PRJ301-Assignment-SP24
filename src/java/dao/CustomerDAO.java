@@ -64,8 +64,9 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
                 String surname = rs.getString("surname");
                 String email = rs.getString("email");
                 String phone = rs.getString("phonenumber");
-                Customer c = new Customer(id_username,username, password, firstName, surname, email, phone);
-                
+                Customer c = new Customer(id_username, username, password, firstName, surname, email, phone);
+                return c;
+
             }
         } catch (Exception ex) {
             Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -131,9 +132,56 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
         return false;
     }
 
+    public Customer fogortPass(String username, String email) {
+        String sql = " Select * From customeraccount \n"
+                + "Where username = ? AND email = ?";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, username);
+            ps.setString(2, email);
+
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id_username = rs.getInt(1);
+                Customer c = findById(id_username);
+                if (c != null) {
+                    return c;
+                }
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+
+    public boolean changePass(int id_user, String password) {
+        String sql = "Update customeraccount\n"
+                + "		set password = ?\n"
+                + "		Where id_username = ?";
+        Customer c = findById(id_user);
+        PreparedStatement ps;
+        try {
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, password);
+            ps.setInt(2, c.getIdCustomer());
+
+            int rowAffect = ps.executeUpdate();
+            if (rowAffect > 0) {
+
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+
+    }
+
     public static void main(String[] args) {
         CustomerDAO cd = new CustomerDAO();
-//        System.out.println(cd.login("ndm252003", "nhandeptrai"));
+        System.out.println(cd.changePass(5, "phuong"));
     }
 
 }

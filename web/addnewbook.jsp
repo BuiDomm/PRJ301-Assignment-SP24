@@ -16,10 +16,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-16x16.png">
+        
     </head>
-    <body>
-        <div class="container ">
-            <div style="margin-left: 50%; transform: translateX(-50%);">
+    <body>  
+      
+        <div class="container " style="margin-top: 70px">
+            <div style="margin-left: 54%; transform: translateX(-50%);">
                 <h1 class="text-center" style="margin-left:-137px">ADD NEW BOOK</h1>
                 <form action="book" method="post" class="form">
                     <div class="d-flex">
