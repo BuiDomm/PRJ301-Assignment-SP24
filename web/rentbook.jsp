@@ -23,7 +23,7 @@
 
     </head>
     <body>
-        <div class="popular">
+        <div class="popular" style="position: relative;">
             <div class="content">
                 <div class="header-popular">
                     <div class="title-block">
@@ -51,8 +51,8 @@
 
                 </div>
                 <form class="form--search" method="get" action="search" >
-                    <input class="input" class="input--search" name="bookname" placeholder="Book name" type="search">
-                    <input class="input" class="inpur--search" name="author" placeholder="Author name" type="search">
+                    <input autocomplete="off" class="input" class="input--search" name="bookname" placeholder="Book name" type="search">
+                    <input autocomplete="off" class="input" class="inpur--search" name="author" placeholder="Author name" type="search">
                     <button class="button--search">
                         <span class="span">🔎</span>
                     </button>
@@ -138,9 +138,21 @@
                     </c:forEach>
 
 
-                </div>
-            </div>
 
+                </div>
+
+
+            </div>
+            <jsp:useBean id="pagenum" class="dao.BookDAO" /> 
+
+            <div style="text-align: center; margin-top: 50px; " class="sticky--page" >
+                <c:forEach begin="1" end="${pagenum.pageNumber}" var="i"> 
+                    <a style="padding: 18px;     margin-top: 16px;
+                       font-weight: 400;
+                       font-size: 1.8rem;
+                       color: #5f5b53;" class="hover--page" href="numpage?id=${i}">${i}</a>
+                </c:forEach>
+            </div>
 
     </body>    
 </html>

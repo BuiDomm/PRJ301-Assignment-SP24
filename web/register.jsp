@@ -28,31 +28,31 @@
                 <p class="message">Signup now and get full access to our app. </p>
                 <div class="flex">
                     <label>
-                        <input class="input" type="text" placeholder="" required="" name="firstname">
+                        <input autocomplete="off" class="input" type="text" placeholder="" required="" name="firstname">
                         <span>Firstname</span>
                     </label>
 
                     <label>
-                        <input class="input" type="text" placeholder="" required="" style=" width: 75%;" name="lastname">
+                        <input autocomplete="off" class="input" type="text" placeholder="" required="" style=" width: 75%;" name="lastname">
                         <span>Lastname</span>
                     </label>
                 </div>  
 
                 <label>
-                    <input class="input" type="text" placeholder="" required="" name="username">
+                    <input autocomplete="off" class="input" type="text" placeholder="" required="" name="username">
                     <span>Username</span>
                 </label> 
 
                 <label>
-                    <input class="input" type="password" placeholder="" required="" name="password">
+                    <input autocomplete="off" class="input" type="password" placeholder="" required="" name="password">
                     <span>Password</span>
                 </label>
                 <label>
-                    <input class="input" type="email" placeholder="" required="" name="email">
+                    <input autocomplete="off" class="input" type="email" placeholder="" required="" name="email">
                     <span>Email</span>
                 </label>
                 <label>
-                    <input class="input" type="number" placeholder="" required="" name="phone">
+                    <input autocomplete="off" class="input" type="number" placeholder="" required="" name="phone">
                     <span>Phone</span>
                 </label>
                 <button class="submit">Submit</button>

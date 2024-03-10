@@ -80,6 +80,10 @@
         <servlet-name>ChanglePass</servlet-name>
         <servlet-class>controller.ChanglePass</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Numpage</servlet-name>
+        <servlet-class>controller.Numpage</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -160,5 +164,9 @@
     <servlet-mapping>
         <servlet-name>ChanglePass</servlet-name>
         <url-pattern>/changlepass</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Numpage</servlet-name>
+        <url-pattern>/numpage</url-pattern>
     </servlet-mapping>
 </web-app>

@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +25,7 @@ import model.Publisher;
  *
  * @author ASUS
  */
-public class BookDAO extends DBContext implements BaseDAO<Book> {
+public class BookDAO extends DBContext implements BaseDAO<Book>, Serializable {
 
     @Override
     public List<Book> getAll() {
@@ -33,6 +34,63 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
         String sql = "SELECT * FROM book";
         try {
             PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id_book = rs.getInt(1);
+                String name_book = rs.getString("name_book");
+                String author = rs.getString("author");
+                int id_category = rs.getInt("id_category");
+                int id_publisher = rs.getInt("id_publisher");
+                int year_pushlisher = rs.getInt("year_publisher");
+                String img = rs.getString("img_book");
+                Category c = cd.findById(id_category);
+                PublisherDAO pd = new PublisherDAO();
+                Publisher p = pd.findById(id_publisher);
+                int count = rs.getInt("amount");
+                Book b = new Book(id_book, name_book, author, c, p, year_pushlisher, img, count);
+                list.add(b);
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(BookDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return list;
+    }
+
+    public int getPageNumber() {
+
+        String sql = "Select count(*) as countbook from book";
+
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int count = rs.getInt(1);
+                int numberpage = 0;
+                numberpage = count / 12;
+                if (count % 12 != 0) {
+                    numberpage = numberpage + 1;
+                }
+                return numberpage;
+
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(Page.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return 0;
+    }
+
+    public List<Book> getAllFollowPage(int num) {
+        List<Book> list = new ArrayList<>();
+        CategoryDAO cd = new CategoryDAO();
+        String sql = "Select * from book\n"
+                + "	order by id_book\n"
+                + "	offset ? rows \n"
+                + "	fetch first 12 rows only";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setInt(1, (num-1)*12);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id_book = rs.getInt(1);
@@ -292,8 +350,8 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
         return list;
 
     }
-    
-        public List<Book> sortBookYearNear() {
+
+    public List<Book> sortBookYearNear() {
         String sql = "Select * FROM book \n"
                 + "Order By year_publisher DESC";
         List<Book> list = new ArrayList();
@@ -322,7 +380,6 @@ public class BookDAO extends DBContext implements BaseDAO<Book> {
         return list;
 
     }
-
 
     public List<Book> findBook(String nameBook, String nameAuthor) {
 

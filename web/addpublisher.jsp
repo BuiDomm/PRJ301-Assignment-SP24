@@ -37,7 +37,7 @@
                     <div class="d-flex">
                         <div >
                             <label for="name">Publisher Name</label>
-                            <input  name="publisher" type="text" class="form-control" placeholder="Publisher Name Name..."/>
+                            <input autocomplete="off"  name="publisher" type="text" class="form-control" placeholder="Publisher Name Name..."/>
                         </div>
 
                         <div>

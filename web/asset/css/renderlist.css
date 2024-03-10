@@ -30,6 +30,10 @@ a {
     top: -20px;
     z-index: 1;
 }
+.hover--page:hover { 
+background: #ccc;
+cursor: pointer;
+}
 .btn {
     padding: 11px 16px;
     background: #171100;
@@ -958,4 +962,20 @@ input--search:hover {
 }
 .outofstock {
  opacity: 0.5;
+}
+.sticky--page { 
+/*position: absolute;*/
+position: fixed ;
+top: 0;
+left: 30px;
+display: flex;
+flex-direction: column;
+}
+.hover--page:focus { 
+background: #7264d6;
+}
+
+.click--pagenumber { 
+background: #7264d6;
+
 }

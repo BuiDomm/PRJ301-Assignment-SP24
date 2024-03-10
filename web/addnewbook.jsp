@@ -27,7 +27,7 @@
                     <div class="d-flex">
                         <div ">
                             <label for="namebook">Book Name </label>
-                            <input  name="namebook" type="text" class="form-control" placeholder="Enter name of Book"/>
+                            <input  name="namebook" type="text" class="form-control" placeholder="Enter name of Book" autocomplete="off"/>
                         </div>
                         <div style="margin-left: 20px;">
                             <label for="publishername">Publisher Name </label>
@@ -44,7 +44,7 @@
                     <div class="d-flex">
                         <div >
                             <label for="name">Author Name </label>
-                            <input  name="authorname" type="text" class="form-control" placeholder="Enter name of author"/>
+                            <input  name="authorname" type="text" class="form-control" placeholder="Enter name of author" autocomplete="off"/>
                         </div>
                         <div style="margin-left: 20px;">
                             <label for="category">Category</label>
@@ -60,24 +60,22 @@
                     <div class="d-flex">
                         <div ">
                             <label for="name">Quantity</label>
-                            <input  name="quantity" type="text" class="form-control" placeholder="Quantity"/>
+                            <input  name="quantity" type="text" class="form-control" placeholder="Quantity" autocomplete="off"/>
                         </div>
                         <div style="margin-left: 20px;">
                             <div >
                                 <label for="yearpublisher">Year Publisher </label>
-                                <input  name="yearpublisher" type="number" class="form-control" placeholder="Enter year publisher" min="=1999" max="2024" step="1"/>
+                                <input autocomplete="off" name="yearpublisher" type="number" class="form-control" placeholder="Enter year publisher" min="=1999" max="2024" step="1"/>
                             </div>
 
                         </div>
                     </div>
 
 
-
-
                     <div class="d-flex">
                         <div style="width: 30%" >
                             <label for="price">Image book </label>
-                            <input name="img" type="file">
+                            <input name="img" type="file" autocomplete="off">
 
                         </div>
 
