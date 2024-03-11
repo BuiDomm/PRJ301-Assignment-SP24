@@ -83,7 +83,7 @@
                                     </p>
                                     <div class="row row-price">
                                         <strong class="price">${pb.author}</strong>
-                                        <h3 class="title-item line-clamp"><a href="#!">${pb.publisher.name}</a></h3>
+                                        <h3 class="title-item line-clamp"><a href="#!">${pb.yearDate}</a></h3>
                                     </div>
                                 </div>
 
@@ -121,7 +121,7 @@
                                     </p>
                                     <div class="row row-price">
                                         <strong class="price">${pb.author}</strong>
-                                        <h3 class="title-item line-clamp"><a href="#!">${pb.publisher.name}</a></h3>
+                                        <h3 class="title-item line-clamp" style="font-size: 1.5rem;"><a href="#!">${pb.yearDate}</a></h3>
                                     </div>
                                 </div>
 
@@ -130,6 +130,13 @@
                                     <a href="#!" > <i class="fa-solid fa-heart"></i></a>
 
                                 </div>
+                                <c:if test="${sessionScope.idbookincart == pb.idBook}" >
+                                    
+                                    <p class="amount-book" style="float: left;color: #da6464" >${sessionScope.mess} </p>  
+
+
+                                </c:if>
+
                                 <p class="amount-book" style="float: right">${pb.count} book left</p>  
 
                             </div>

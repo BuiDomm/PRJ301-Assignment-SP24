@@ -86,8 +86,9 @@ public class AddToCartServlet extends HttpServlet {
                     for (Item item : listItem) {
                         if (item.getBook().getIdBook() == b.getIdBook()) {
                             check = true;
-                            String mess = "You had this book";
+                            String mess = "You had this book in cart";
                             session.setAttribute("mess", mess);
+                            session.setAttribute("idbookincart", b.getIdBook());
                         }
                     }
                     if (check == false) {
