@@ -42,7 +42,7 @@ public class SendEmail {
 
             mgs.setFrom(new InternetAddress(fromEmail));
             mgs.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
-            mgs.setSubject(": Welcome to the 92 Library - Your Gateway to the Future of Knowledge!");
+            mgs.setSubject(" Welcome to the 92 Library - Your Gateway to the Future of Knowledge!");
             mgs.setText("Dear " + name + ",\n"
                     + "\n"
                     + "Greetings and a warm welcome to the 92 Library – the epitome of modernity and innovation in the realm of digital libraries! We are thrilled to have you as our newest member, and we extend our sincerest gratitude for choosing to embark on your intellectual journey with us.\n"
@@ -101,5 +101,41 @@ public class SendEmail {
         }
 
     }
+    
+    
+        public void sendCheckPass(String mail, int token) {
+
+        final String username = "nhanbtdevfe23@gmail.com";
+        final String password = "vutc kizj tmap aqlz";
+        String fromEmail = "nhanbtdevfe23@gmail.com";
+        String toEmail = mail;
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        MimeMessage mgs = new MimeMessage(session);
+        try {
+
+            mgs.setFrom(new InternetAddress(fromEmail));
+            mgs.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            mgs.setSubject("Request to change password !!!");
+            mgs.setText("Your password change verification code is: " + token);
+            Transport.send(mgs);
+            System.out.println("Sent Magess");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+    }
+    
+    
 
 }

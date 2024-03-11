@@ -84,6 +84,10 @@
         <servlet-name>Numpage</servlet-name>
         <servlet-class>controller.Numpage</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckNum</servlet-name>
+        <servlet-class>controller.CheckNum</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -168,5 +172,9 @@
     <servlet-mapping>
         <servlet-name>Numpage</servlet-name>
         <url-pattern>/numpage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckNum</servlet-name>
+        <url-pattern>/checknum</url-pattern>
     </servlet-mapping>
 </web-app>

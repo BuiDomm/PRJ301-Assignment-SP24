@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Customer;
 
 /**
  *
@@ -35,7 +36,7 @@ public class ChanglePass extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ChanglePass</title>");            
+            out.println("<title>Servlet ChanglePass</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ChanglePass at " + request.getContextPath() + "</h1>");
@@ -73,15 +74,18 @@ public class ChanglePass extends HttpServlet {
         int idUser = Integer.parseInt(request.getParameter("idUser"));
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
-        if (password1.equals(password2)) {            
-            CustomerDAO d = new CustomerDAO();
+        CustomerDAO d = new CustomerDAO();
+
+        if (password1.equals(password2)) {
             d.changePass(idUser, password2);
             response.sendRedirect("loginForm.jsp");
-        } else {            
+        } else {
             String erorrMessage = "Confirm password is invalid";
+            Customer c = d.findById(idUser);
+            request.setAttribute("oldcustomerr", c);
             request.setAttribute("errorMessage", erorrMessage);
             request.getRequestDispatcher("setpassword.jsp").forward(request, response);
-        }        
+        }
     }
 
     /**

@@ -4,7 +4,6 @@
  */
 package controller;
 
-import EmailAutoman.SendEmail;
 import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,14 +11,13 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.Random;
 import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class HandleFogort extends HttpServlet {
+public class CheckNum extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +36,10 @@ public class HandleFogort extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet HandleFogort</title>");
+            out.println("<title>Servlet CheckNum</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet HandleFogort at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CheckNum at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +57,22 @@ public class HandleFogort extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String numrandom = request.getParameter("numberrandom");
+        String numbercheck = request.getParameter("numbercheck");
+        CustomerDAO cd = new CustomerDAO();
+        int oldcus = Integer.parseInt(request.getParameter("oldcus"));
+        if (numrandom != null && numbercheck != null) {
+            int nnumrandom = Integer.parseInt(numrandom);
+            int nnumbercheck = Integer.parseInt(numbercheck);
+                if(nnumbercheck == nnumrandom) { 
+                    Customer c = cd.findById(oldcus);
+                    request.setAttribute("oldcustomerr", c);
+                    request.getRequestDispatcher("setpassword.jsp").forward(request, response);
+                    
+                }
+
+        }
+
     }
 
     /**
@@ -73,28 +86,7 @@ public class HandleFogort extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String username = request.getParameter("usernameold");
-        String email = request.getParameter("emailold");
-        CustomerDAO cd = new CustomerDAO();
-        Customer c = cd.fogortPass(username, email);
-   
-        if (c != null) {
-
-            Random generator = new Random();
-            int random = generator.nextInt(100000) + 1;
-            SendEmail mail = new SendEmail();
-            mail.sendCheckPass(email, random);
-            request.setAttribute("oldCustomer", c);
-            request.setAttribute("numberRandom", random);
-            request.getRequestDispatcher("checkrandom.jsp").forward(request, response);
-
-        } else {
-            String notice = "Your information is not exists!! Please double check!";
-            request.setAttribute("notice", notice);
-            request.getRequestDispatcher("fogort.jsp").forward(request, response);
-        }
-
+        processRequest(request, response);
     }
 
     /**

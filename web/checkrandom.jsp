@@ -17,14 +17,11 @@
     </head>
     <body>
         <div class="container-box">
-            <form method="post" action="changlepass">
+            <form method="get" action="checknum">
                 <p class="logo">92 Library</p>
-
-                <input name="idUser" value="${oldcustomerr.idCustomer}" hidden="true">
-                <p style="font-size: 13px;text-align: center;color: #696d76;">* Please input new password in here!!</p>
-                <input type="password" placeholder="New password" required="" name="password1">
-                <input type="password" placeholder="Confirm new password" required="" name="password2">
-                <h2 style="font-size: 13px; padding: 0; margin: 0;color: red;margin-bottom: 5px">${requestScope.errorMessage}</h2>
+                <input name="oldcus" value="${oldCustomer.idCustomer}" hidden="true">
+                <input name="numberrandom" value="${numberRandom}" hidden="true">
+                <input type="number" placeholder="Verifi code...." required="" name="numbercheck">
 
                 <button class="login">Submit</button>
                 <hr>
