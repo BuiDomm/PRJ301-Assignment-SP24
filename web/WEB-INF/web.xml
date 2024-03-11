@@ -88,6 +88,10 @@
         <servlet-name>CheckNum</servlet-name>
         <servlet-class>controller.CheckNum</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <servlet-class>controller.UpdateCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -176,5 +180,9 @@
     <servlet-mapping>
         <servlet-name>CheckNum</servlet-name>
         <url-pattern>/checknum</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <url-pattern>/updatecustomer</url-pattern>
     </servlet-mapping>
 </web-app>

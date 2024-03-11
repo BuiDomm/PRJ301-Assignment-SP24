@@ -73,8 +73,8 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
         }
         return null;
     }
-    
-        public Customer findByUsername(String user) {
+
+    public Customer findByUsername(String user) {
         String sql = "SELECT * FROM customeraccount \n"
                 + "Where username = ? ";
         try {
@@ -106,7 +106,32 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
 
     @Override
     public boolean update(Customer newObject) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "Update customeraccount\n"
+                + "Set password =?,\n"
+                + "first_name=?, \n"
+                + "surname = ?,\n"
+                + "email = ?,\n"
+                + "phonenumber = ?\n"
+                + "Where id_username = ? ";
+        PreparedStatement ps;
+        try {
+            ps = getConnection().prepareStatement(sql);
+            ps.setString(1, newObject.getPassword());
+            ps.setString(2, newObject.getFirstName());
+            ps.setString(3, newObject.getSurname());
+            ps.setString(4, newObject.getEmail());
+            ps.setString(5, newObject.getPhoneNumber());
+            ps.setInt(6, newObject.getIdCustomer());
+
+            int rowAffect = ps.executeUpdate();
+            if (rowAffect > 0) {
+
+                return true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
     }
 
     @Override

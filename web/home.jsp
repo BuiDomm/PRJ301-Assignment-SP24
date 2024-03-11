@@ -54,7 +54,7 @@
                         <div class="action--btn login--user dropdown">
                             <h3 class="user--action login--btn dropdown-button ">${sessionScope.account.surname} 
                                 <div class="dropdown-content">
-                                    <a class="item-list" href="#">Setting</a>
+                                    <a class="item-list" href="updatecustomer?id=${sessionScope.account.idCustomer}">Setting</a>
                                     <a class="item-list" href="logout">Log Out</a>
                                 </div>
                             </h3>
