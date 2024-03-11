@@ -73,6 +73,31 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
         }
         return null;
     }
+    
+        public Customer findByUsername(String user) {
+        String sql = "SELECT * FROM customeraccount \n"
+                + "Where username = ? ";
+        try {
+            PreparedStatement ps = getConnection().prepareStatement(sql);
+            ps.setString(1, user);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int id_username = rs.getInt(1);
+                String username = rs.getString("username");
+                String password = rs.getString("password");
+                String firstName = rs.getString("first_name");
+                String surname = rs.getString("surname");
+                String email = rs.getString("email");
+                String phone = rs.getString("phonenumber");
+                Customer c = new Customer(id_username, username, password, firstName, surname, email, phone);
+                return c;
+
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     @Override
     public boolean insert(Customer newObject) {

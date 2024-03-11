@@ -4,6 +4,7 @@
  */
 package controller;
 
+import EmailAutoman.SendEmail;
 import dao.CustomerDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -85,15 +86,16 @@ public class RegisterCustomerServlet extends HttpServlet {
         }
 
         CustomerDAO cd = new CustomerDAO();
-        List<Customer> list = cd.getAll();
-        for (Customer c : list) {
-            if (c.getUsername().equals(username)) {
+        
+            if (cd.findByUsername(username) != null) {
                 request.setAttribute("erorr", "Username existed, please input another username.");
                 request.getRequestDispatcher("register.jsp").forward(request, response);
-            }
+               
         }
         Customer c = new Customer(username, password, firstName, surfname, email, phone);
             if(cd.register(c)==true) {
+                SendEmail mail = new SendEmail();
+                mail.sendMaill(c.getEmail(),c.getFirstName()+ " " +c.getSurname());
                response.sendRedirect("loader.jsp");
             }
 

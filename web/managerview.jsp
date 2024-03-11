@@ -45,7 +45,7 @@
                             <a class="navbar--fonts" href="#feature">Features</a>
                         </li>
                         <li class="navbar--item">
-                            <a class="navbar--fonts" href="#blog">Blog</a>
+                            <a class="navbar--fonts" href="blog.jsp">Blog</a>
                         </li>
                     </ul>
 

@@ -55,6 +55,7 @@
                     <input autocomplete="off" class="input" type="number" placeholder="" required="" name="phone">
                     <span>Phone</span>
                 </label>
+                <h3 class="message" style="color: red">${erorr}</h3>
                 <button class="submit">Submit</button>
                 <h2 class="Notification"></h2>
 
