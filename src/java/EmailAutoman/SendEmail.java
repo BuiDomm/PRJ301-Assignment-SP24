@@ -43,7 +43,7 @@ public class SendEmail {
             mgs.setFrom(new InternetAddress(fromEmail));
             mgs.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
             mgs.setSubject(": Welcome to the 92 Library - Your Gateway to the Future of Knowledge!");
-            mgs.setText("Dear" + name + ",\n"
+            mgs.setText("Dear " + name + ",\n"
                     + "\n"
                     + "Greetings and a warm welcome to the 92 Library – the epitome of modernity and innovation in the realm of digital libraries! We are thrilled to have you as our newest member, and we extend our sincerest gratitude for choosing to embark on your intellectual journey with us.\n"
                     + "\n"

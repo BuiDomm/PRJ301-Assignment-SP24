@@ -53,8 +53,8 @@
                 </div>
                 <h3 style="color: red; font-weight: 600;">${requestScope.error}</h3>
                 <div class="btnn">
-                    <button class="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#!" style="text-decoration: none">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
-                    <button  class="button2"><a href="register.jsp" style="text-decoration: none">Sign Up</a></button>
+                    <button class="button1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#!" style="text-decoration: none ;display: inline-block; padding: 3px 8px;">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    <button  class="button2"><a href="register.jsp" style="text-decoration: none; display: inline-block; padding: 3px 8px;" >Sign Up</a></button>
 
                 </div>
                 <a class="button3" href="fogort.jsp" style="text-decoration: none">Forgot Password</a>
