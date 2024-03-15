@@ -82,7 +82,7 @@ public class HandleFogort extends HttpServlet {
         if (c != null) {
 
             Random generator = new Random();
-            int random = generator.nextInt(100000) + 1;
+            int random = generator.nextInt(1000000) + 1;
             SendEmail mail = new SendEmail();
             mail.sendCheckPass(email, random);
             request.setAttribute("oldCustomer", c);

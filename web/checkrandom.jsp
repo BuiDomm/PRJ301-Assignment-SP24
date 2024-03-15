@@ -21,9 +21,9 @@
                 <p class="logo">92 Library</p>
                 <input name="oldcus" value="${oldCustomer.idCustomer}" hidden="true">
                 <input name="numberrandom" value="${numberRandom}" hidden="true">
-                <input type="number" placeholder="Verifi code...." required="" name="numbercheck">
-
-                <button class="login">Submit</button>
+                <input type="number" placeholder="Verifi code...." required="" name="numbercheck" style="margin-bottom: 7px">
+                <h2 style="color: red;  padding: 0; margin: 0;font-size: 14px;font-weight: 600;">${e}</h2>
+                <button class="login" style="margin-top: 5px">Submit</button>
                 <hr>
             </form>
 

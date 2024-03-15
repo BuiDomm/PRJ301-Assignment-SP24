@@ -25,7 +25,8 @@ window.addEventListener('load', function () {
         setInterval(() => {
             handleChangeSlide();
             index++;
-            if (index > 3) index = 1;
+            if (index > 3)
+                index = 1;
             console.log(index)
             mainSlider.style = `transform: translateX(${positionX}px)`;
             const checkActive = document.querySelector('.quotes--dots-item.active');
@@ -57,8 +58,56 @@ window.addEventListener('load', function () {
 
 
 function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: 'smooth'
-  });
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 }
+
+
+
+$(function () {
+
+    $('.js-check-all').on('click', function () {
+
+        if ($(this).prop('checked')) {
+            $('.control--checkbox input[type="checkbox"]').each(function () {
+                $(this).prop('checked', true);
+            })
+        } else {
+            $('.control--checkbox input[type="checkbox"]').each(function () {
+                $(this).prop('checked', false);
+            })
+        }
+
+    });
+
+    $('.js-ios-switch-all').on('click', function () {
+
+        if ($(this).prop('checked')) {
+            $('.ios-switch input[type="checkbox"]').each(function () {
+                    $(this).prop('checked', true);
+                $(this).closest('tr').addClass('active');
+            })
+        } else {
+            $('.ios-switch input[type="checkbox"]').each(function () {
+                $(this).prop('checked', false);
+                $(this).closest('tr').removeClass('active');
+            })
+        }
+
+    });
+
+
+
+    $('.ios-switch input[type="checkbox"]').on('click', function () {
+        if ($(this).closest('tr').hasClass('active')) {
+            $(this).closest('tr').removeClass('active');
+        } else {
+            $(this).closest('tr').addClass('active');
+        }
+    });
+
+
+
+});

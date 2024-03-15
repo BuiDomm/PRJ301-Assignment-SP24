@@ -4,14 +4,20 @@
  */
 package EmailAutoman;
 
+import java.io.IOException;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 /**
  *
@@ -135,6 +141,58 @@ public class SendEmail {
         }
 
     }
+        
+        
+        
+        
+   public void sendBill(String mail,String name) {
+
+        final String username = "nhanbtdevfe23@gmail.com";
+        final String password = "vutc kizj tmap aqlz";
+        String fromEmail = "nhanbtdevfe23@gmail.com";
+        String toEmail = mail;
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+
+        Session session = Session.getInstance(properties, new javax.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        MimeMessage mgs = new MimeMessage(session);
+        try {
+
+            mgs.setFrom(new InternetAddress(fromEmail));
+            mgs.addRecipient(Message.RecipientType.TO, new InternetAddress(toEmail));
+            mgs.setText("Dear Customer " + name);
+            mgs.setSubject("92 Library Dear notice of invoice for borrowing books at our library as follows.!!!");
+            
+            Multipart emailContent = new MimeMultipart();
+            //
+            MimeBodyPart textBodyPart = new MimeBodyPart();
+            textBodyPart.setText("Billllllllllll");
+            MimeBodyPart pdfAttachment = new MimeBodyPart();
+            pdfAttachment.attachFile("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\test.pdf");
+            
+            // Attach Body Part
+            emailContent.addBodyPart(textBodyPart);
+            emailContent.addBodyPart(pdfAttachment);
+            mgs.setContent(emailContent);
+            
+            Transport.send(mgs);
+            System.out.println("Sent Magess");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (IOException ex) {
+            Logger.getLogger(SendEmail.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+        
     
     
 

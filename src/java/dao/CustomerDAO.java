@@ -36,8 +36,8 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
                 String first_name = rs.getString("first_name");
                 String surname = rs.getString("surname");
                 String email = rs.getString("email");
-                String phone = rs.getString("phone");
-                Customer c = new Customer(username, password, first_name, surname, email, phone);
+                String phone = rs.getString("phonenumber");
+                Customer c = new Customer(id_username,username, password, first_name, surname, email, phone);
                 list.add(c);
             }
 
@@ -231,7 +231,7 @@ public class CustomerDAO extends DBContext implements BaseDAO<Customer> {
 
     public static void main(String[] args) {
         CustomerDAO cd = new CustomerDAO();
-        System.out.println(cd.changePass(5, "phuong"));
+        System.out.println(cd.getAll());
     }
 
 }

@@ -92,6 +92,18 @@
         <servlet-name>UpdateCustomer</servlet-name>
         <servlet-class>controller.UpdateCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Notfound</servlet-name>
+        <servlet-class>controller.Notfound</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ListCustomer</servlet-name>
+        <servlet-class>controller.ListCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>BlockCustomerServlet</servlet-name>
+        <servlet-class>controller.Blockcustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -184,5 +196,17 @@
     <servlet-mapping>
         <servlet-name>UpdateCustomer</servlet-name>
         <url-pattern>/updatecustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Notfound</servlet-name>
+        <url-pattern>/notfound</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCustomer</servlet-name>
+        <url-pattern>/listcustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BlockCustomerServlet</servlet-name>
+        <url-pattern>/block</url-pattern>
     </servlet-mapping>
 </web-app>

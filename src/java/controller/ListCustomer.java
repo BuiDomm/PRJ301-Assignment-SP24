@@ -11,13 +11,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class CheckNum extends HttpServlet {
+public class ListCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +38,10 @@ public class CheckNum extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CheckNum</title>");
+            out.println("<title>Servlet ListCustomer</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CheckNum at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ListCustomer at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,27 +59,16 @@ public class CheckNum extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String numrandom = request.getParameter("numberrandom");
-        String numbercheck = request.getParameter("numbercheck");
-        CustomerDAO cd = new CustomerDAO();
-        int oldcus = Integer.parseInt(request.getParameter("oldcus"));
-        if (numrandom != null && numbercheck != null) {
-            int nnumrandom = Integer.parseInt(numrandom);
-            int nnumbercheck = Integer.parseInt(numbercheck);
-                if(nnumbercheck == nnumrandom) { 
-                    Customer c = cd.findById(oldcus);
-                    request.setAttribute("oldcustomerr", c);
-                    request.getRequestDispatcher("setpassword.jsp").forward(request, response);
-                    
-                }
-                else { 
-                request.setAttribute("e", "Invalid Code...Please check again");
-                request.getRequestDispatcher("checkrandom.jsp").forward(request, response);
-                
-                }
-
+        HttpSession session = request.getSession();
+        if (session.getAttribute("manageraccount") != null) {
+            CustomerDAO cd = new CustomerDAO();
+            List<Customer> dsCustomer = cd.getAll();
+            request.setAttribute("dsCustomer", dsCustomer);
+            request.getRequestDispatcher("listcustomer.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("notfound.jsp");
         }
-
+        
     }
 
     /**

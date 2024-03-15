@@ -685,7 +685,7 @@ __block__item {
     font-family: var(--second-font);
     height: 100%;
 }
-.process__img_more { 
+.process__img_more {
     height: 152.6px;
 }
 .process__row__title {
@@ -825,7 +825,8 @@ __block__item {
 }
 .btn--news-submit {
     margin-top: 50px;
-    margin-left: 45%;
+    margin-left: 50%;
+    transform: translateX(-50%);
 }
 
 .video__play-btn {
@@ -1315,10 +1316,11 @@ __block__item {
 }
 
 .empty--block--img {
-    width: 400px;
-    height: 350px;
-    margin-left: 35%;
-    margin-top: 60px;
+    width: 500px;
+    height: 450px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    margin-top: 100px;
 
 }
 .empty-cap {
@@ -1382,6 +1384,6 @@ __block__item {
         )
 }
 .process__row__title-bill {
-    width: 450px;   
+    width: 450px;
 
 }

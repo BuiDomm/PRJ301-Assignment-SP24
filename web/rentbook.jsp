@@ -130,12 +130,7 @@
                                     <a href="#!" > <i class="fa-solid fa-heart"></i></a>
 
                                 </div>
-                                <c:if test="${sessionScope.idbookincart == pb.idBook}" >
-                                    
-                                    <p class="amount-book" style="float: left;color: #da6464" >${sessionScope.mess} </p>  
-
-
-                                </c:if>
+                        
 
                                 <p class="amount-book" style="float: right">${pb.count} book left</p>  
 

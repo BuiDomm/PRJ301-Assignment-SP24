@@ -63,10 +63,13 @@ public class BookStorage extends HttpServlet {
         BillDAO bd = new BillDAO();
         HttpSession session = request.getSession();
         Customer c = (Customer) session.getAttribute("account");
+        if (c != null) {
 
-        List<Checkout> listBill = bd.getAllBill(c.getIdCustomer());
-        session.setAttribute("listBill", listBill);
-        response.sendRedirect("listbill.jsp");
+            List<Checkout> listBill = bd.getAllBill(c.getIdCustomer());
+            session.setAttribute("listBill", listBill);
+            response.sendRedirect("listbill.jsp");
+        }
+        else response.sendRedirect("notfound.jsp");
 
     }
 
