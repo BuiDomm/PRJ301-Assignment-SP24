@@ -85,6 +85,7 @@ public class UpdateCustomer extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         int idCustomer = Integer.parseInt(request.getParameter("customerID"));
         String email = request.getParameter("email");
         String pass = request.getParameter("password");
@@ -96,6 +97,8 @@ public class UpdateCustomer extends HttpServlet {
         Customer c = new Customer(idCustomer, username, pass, firstName, surname, email, phonenumber);
         cd.update(c);
         Customer cmm = cd.findById(idCustomer);
+        session.setAttribute("account", c);
+
         request.setAttribute("customerold", cmm);
         request.getRequestDispatcher("updatecustomer.jsp").forward(request, response);
     }

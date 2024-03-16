@@ -1318,7 +1318,7 @@ __block__item {
 .empty--block--img {
     width: 500px;
     height: 450px;
-    margin-left: 50%;
+    margin-left: 55%;
     transform: translateX(-50%);
     margin-top: 100px;
 

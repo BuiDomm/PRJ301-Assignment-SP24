@@ -94,15 +94,23 @@ public class AddOrder extends HttpServlet {
 
             try {
                 Document document = new Document();
-                PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\test.pdf"));
+                PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Bill92Library.pdf"));
                 document.open();
                 Paragraph p = new Paragraph();
-                p.add("Bill Details");
+                p.add("92 Library Digital Give Bill For Customer " + cs.getUsername());
+                Paragraph pp = new Paragraph();
+                pp.add("Bill Details");
+
                 p.setAlignment(Element.ALIGN_CENTER);
+
+                pp.setAlignment(Element.ALIGN_CENTER);
+
                 document.add(p);
+                document.add(pp);
+
                 document.add(Chunk.NEWLINE);
                 document.add(Chunk.NEWLINE);
-                PdfPTable table = new PdfPTable(new float[]{12, 30, 30, 30, 30, 30});
+                PdfPTable table = new PdfPTable(new float[]{12, 40, 40, 40, 30, 30});
                 table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
                 table.addCell("Num");
                 table.addCell("Book Name");
@@ -115,11 +123,13 @@ public class AddOrder extends HttpServlet {
 
                 PdfPCell[] cell = table.getRow(0).getCells();
                 for (int j = 0; j < cell.length; j++) {
-                    cell[j].setBackgroundColor(BaseColor.GRAY);
+                    cell[j].setBackgroundColor(BaseColor.LIGHT_GRAY);
                 }
-
+                int count = 0;
                 for (int n = 0; n < listItem.size(); n++) {
-                    table.addCell(n + "");
+
+                    count = count + 1;
+                    table.addCell(count + "");
                     table.addCell(listItem.get(n).getBook().getName());
                     table.addCell(listItem.get(n).getBook().getAuthor());
                     table.addCell(listItem.get(n).getBook().getCategory().getName());
@@ -136,8 +146,8 @@ public class AddOrder extends HttpServlet {
                 document.add(table);
                 document.close();
                 SendEmail se = new SendEmail();
-                se.sendBill(cs.getEmail(), cs.getFirstName()+ " " + cs.getSurname());
-                
+                se.sendBill(cs.getEmail(), cs.getFirstName() + " " + cs.getSurname());
+
                 listItem.clear();
 
             } catch (Exception e) {

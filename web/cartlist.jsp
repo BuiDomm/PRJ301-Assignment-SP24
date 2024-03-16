@@ -57,12 +57,13 @@
             </c:if>
 
             <c:if test="${not empty sessionScope.checkout.list}">
+                 <c:set var="counter" value="0" />
                 <c:forEach var="c" items="${sessionScope.checkout.list}">
 
 
 
                     <form class="process_bottom" action="addorder">
-
+                   
                         <div class="process__list-item">
                             <div class="process__item ">
                                 <div class="process__row">
@@ -76,13 +77,14 @@
                                         <h2 class="process__row__desc">Publisher: ${c.book.publisher.name} </h2>
                                     </div>
 
-                                    <div><a href="deleteitem?id=${c.idItem}"> <i class="fa-solid fa-trash icon-fix"></i></a>  </div>
+                                    <div><a href="deleteitem?id=${counter}"> <i class="fa-solid fa-trash icon-fix"></i></a>  </div>
                                 </div> 
                                 <a href="#!" class="process__item__learnMore">Learn More</a>
                                 <figure class="process__block-img">
                                     <img src="./assets/img/process-img.png" alt="" class="process__img">
                                 </figure>
                                 <div class="process__hr"></div>
+                                      <c:set var="counter" value="${counter + 1}" />
                             </div>
                         </c:forEach>
                         <button type="submit" class="btn--news btn--news-submit">

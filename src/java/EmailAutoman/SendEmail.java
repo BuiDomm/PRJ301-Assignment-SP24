@@ -174,9 +174,9 @@ public class SendEmail {
             Multipart emailContent = new MimeMultipart();
             //
             MimeBodyPart textBodyPart = new MimeBodyPart();
-            textBodyPart.setText("Billllllllllll");
+            textBodyPart.setText(" Notice of successful book borrowing from 92 Library! ");
             MimeBodyPart pdfAttachment = new MimeBodyPart();
-            pdfAttachment.attachFile("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\test.pdf");
+            pdfAttachment.attachFile("C:\\Users\\ASUS\\OneDrive\\Documents\\NetBeansProjects\\Bill92Library.pdf");
             
             // Attach Body Part
             emailContent.addBodyPart(textBodyPart);
