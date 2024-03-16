@@ -32,7 +32,7 @@
                 </a>
                 <ul class="nav--bar__topheader">
                     <li class="navbar--item" >
-                        <a class="navbar--fonts" href="bookrent">Bookstorage</a>
+                        <a class="navbar--fonts" href="bookrent">Mybook</a>
                     </li>
                     <li class="navbar--item">
                         <a class="navbar--fonts" href="customerbook">Product</a>

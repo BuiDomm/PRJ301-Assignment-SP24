@@ -4,20 +4,26 @@
  */
 package controller;
 
-import dao.CustomerDAO;
+import dao.BookDAO;
+import dao.FavoriteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+import model.Book;
 import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class CheckNum extends HttpServlet {
+public class FavoriteServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +42,10 @@ public class CheckNum extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CheckNum</title>");
+            out.println("<title>Servlet FavoriteServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CheckNum at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FavoriteServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,27 +63,40 @@ public class CheckNum extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String numrandom = request.getParameter("numberrandom");
-        String numbercheck = request.getParameter("numbercheck");
-        CustomerDAO cd = new CustomerDAO();
-        int oldcus = Integer.parseInt(request.getParameter("oldcus"));
-        if (numrandom != null && numbercheck != null) {
-            int nnumrandom = Integer.parseInt(numrandom);
-            int nnumbercheck = Integer.parseInt(numbercheck);
-            if (nnumbercheck == nnumrandom) {
-                Customer c = cd.findById(oldcus);
-                request.setAttribute("oldcustomerr", c);
-                request.getRequestDispatcher("setpassword.jsp").forward(request, response);
+        HttpSession session = request.getSession();
+
+        if (session != null) {
+            if (request.getParameter("id") != null) {
+                int id = Integer.parseInt(request.getParameter("id"));
+                BookDAO bd = new BookDAO();
+                Book b = bd.findById(id);
+                FavoriteDAO fd = new FavoriteDAO();
+                Customer cc = (Customer) session.getAttribute("account");
+                int idC = cc.getIdCustomer();
+                List<Book> list = fd.getAllByID(idC);
+
+                if (fd.insert((Customer) session.getAttribute("account"), b)) {
+
+                    request.setAttribute("noticesamebook", true);
+                    request.getRequestDispatcher("customerbook").forward(request, response);
+
+                } else {
+                    request.setAttribute("noticesamebook", false);
+                    request.getRequestDispatcher("customerbook").forward(request, response);
+                }
 
             } else {
-                Customer old = cd.findById(oldcus);
-                request.setAttribute("oldCustomer", old);
-                request.setAttribute("numberRandom", numrandom);
-                request.setAttribute("e", "Invalid Code...Please check again");
-                request.getRequestDispatcher("checkrandom.jsp").forward(request, response);
+                FavoriteDAO fd = new FavoriteDAO();
+                Customer cc = (Customer) session.getAttribute("account");
+                int idC = cc.getIdCustomer();
+                List<Book> list = fd.getAllByID(idC);
+                request.setAttribute("listfavoritebook", list);
+                request.getRequestDispatcher("favoritebook.jsp").forward(request, response);
 
             }
 
+        } else {
+            response.sendRedirect("notfound.jsp");
         }
 
     }

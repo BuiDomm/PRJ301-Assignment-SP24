@@ -46,6 +46,9 @@
                             <li class="navbar--item">
                                 <a class="navbar--fonts" href="customerbook">Go Library</a>
                             </li>
+                             <li class="navbar--item">
+                                <a class="navbar--fonts" href="favorite">Favorite Book</a>
+                            </li>
                         </ul>
 
                     </div>

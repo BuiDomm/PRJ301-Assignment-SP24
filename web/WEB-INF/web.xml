@@ -104,6 +104,14 @@
         <servlet-name>BlockCustomerServlet</servlet-name>
         <servlet-class>controller.Blockcustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <servlet-class>controller.FavoriteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteFavoriteBook</servlet-name>
+        <servlet-class>controller.DeleteFavoriteBook</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterCustomerServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -208,5 +216,13 @@
     <servlet-mapping>
         <servlet-name>BlockCustomerServlet</servlet-name>
         <url-pattern>/block</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FavoriteServlet</servlet-name>
+        <url-pattern>/favorite</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteFavoriteBook</servlet-name>
+        <url-pattern>/deletefavorite</url-pattern>
     </servlet-mapping>
 </web-app>

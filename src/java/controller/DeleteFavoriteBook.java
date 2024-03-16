@@ -4,20 +4,21 @@
  */
 package controller;
 
-import dao.CustomerDAO;
+import dao.FavoriteDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.Customer;
 
 /**
  *
  * @author ASUS
  */
-public class CheckNum extends HttpServlet {
+public class DeleteFavoriteBook extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +37,10 @@ public class CheckNum extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CheckNum</title>");
+            out.println("<title>Servlet DeleteFavoriteBook</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CheckNum at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DeleteFavoriteBook at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,27 +58,16 @@ public class CheckNum extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String numrandom = request.getParameter("numberrandom");
-        String numbercheck = request.getParameter("numbercheck");
-        CustomerDAO cd = new CustomerDAO();
-        int oldcus = Integer.parseInt(request.getParameter("oldcus"));
-        if (numrandom != null && numbercheck != null) {
-            int nnumrandom = Integer.parseInt(numrandom);
-            int nnumbercheck = Integer.parseInt(numbercheck);
-            if (nnumbercheck == nnumrandom) {
-                Customer c = cd.findById(oldcus);
-                request.setAttribute("oldcustomerr", c);
-                request.getRequestDispatcher("setpassword.jsp").forward(request, response);
-
-            } else {
-                Customer old = cd.findById(oldcus);
-                request.setAttribute("oldCustomer", old);
-                request.setAttribute("numberRandom", numrandom);
-                request.setAttribute("e", "Invalid Code...Please check again");
-                request.getRequestDispatcher("checkrandom.jsp").forward(request, response);
-
-            }
-
+        int id = Integer.parseInt(request.getParameter("id"));
+        HttpSession session = request.getSession();
+        if (session != null) {
+            Customer c = (Customer) session.getAttribute("account");
+            FavoriteDAO fd = new FavoriteDAO();
+            fd.delete(id, c.getIdCustomer());
+                request.setAttribute("delteS", "Delete Successfully");
+                request.getRequestDispatcher("favoritebook.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("notfound.jsp");
         }
 
     }

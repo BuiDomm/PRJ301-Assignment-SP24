@@ -114,7 +114,7 @@ public class HandleFillter implements Filter {
         HttpServletResponse res = (HttpServletResponse) response;
         String uri = req.getServletPath();
         HttpSession session = req.getSession();
-        if (uri.endsWith(".jsp") && (session.getAttribute("account") == null) && (session.getAttribute("manageraccount") == null) && !uri.contains("loginForm.jsp") && !uri.contains("managerlogin.jsp") && !uri.contains("register.jsp") && !uri.contains("setpassword.jsp") && !uri.contains("fogort.jsp")  && !uri.contains("loader.jsp") && !uri.contains("loader_1.jsp") && !uri.contains("loader_2.jsp")) {
+        if (uri.endsWith(".jsp") && (session.getAttribute("account") == null) && (session.getAttribute("manageraccount") == null) && !uri.contains("loginForm.jsp") && !uri.contains("managerlogin.jsp") && !uri.contains("register.jsp") && !uri.contains("setpassword.jsp") && !uri.contains("fogort.jsp")  && !uri.contains("loader.jsp") && !uri.contains("loader_1.jsp") && !uri.contains("loader_2.jsp") && !uri.contains("checkrandom.jsp")) {
             res.sendRedirect("notfound");
         }
         

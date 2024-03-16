@@ -57,8 +57,15 @@
                         <span class="span">🔎</span>
                     </button>
                 </form>
-                <div class="body">
 
+
+                <c:if test="${noticesamebook ==false}">
+                    <h2 style="color: red; text-align: center;margin-top: 55px">You already have this book in favorite book list.</h2>
+                </c:if> 
+                <c:if test="${noticesamebook ==true}">
+                    <h2 style="color: green; text-align: center;margin-top: 55px">Successfully</h2>
+                </c:if> 
+                <div class="body">
                     <c:forEach var="pb" items="${listbook}"> 
                         <c:if test="${pb.count ==0}">
                             <div class="item outofstock">
@@ -89,7 +96,7 @@
 
                                 <div class="icon--list">
                                     <a href="notfound.jsp"><i style="font-size: 18px;color: red" class="fa fa-exclamation-circle"></i></a>
-                                    <a href="#!"><i class="fa-solid fa-heart"></i></a>
+                                    <a href="favorite"><i class="fa-solid fa-heart"></i></a>
 
                                 </div>
                                 <p class="amount-book" style="float: right; color: red">This product is temporarily out of stock</p>  
@@ -127,10 +134,10 @@
 
                                 <div class="icon--list">
                                     <a href="addtocart?id=${pb.idBook}"><i class="fa-solid fa-cart-shopping"></i></a>
-                                    <a href="#!" > <i class="fa-solid fa-heart"></i></a>
+                                    <a href="favorite?id=${pb.idBook}"><i class="fa-solid fa-heart"></i></a>
 
                                 </div>
-                        
+
 
                                 <p class="amount-book" style="float: right">${pb.count} book left</p>  
 
