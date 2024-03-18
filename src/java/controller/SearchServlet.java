@@ -71,14 +71,11 @@ public class SearchServlet extends HttpServlet {
             request.getRequestDispatcher("listbook.jsp").forward(request, response);
         }
             
-          if ( session.getAttribute("account") instanceof Customer && session.getAttribute("manageraccount")==null ) {
+        
             List<Book> list = bd.findBook(bookname, authorname);
             request.setAttribute("listbook", list);
             request.getRequestDispatcher("rentbook.jsp").forward(request, response);
-        }
-        else {
-            response.sendRedirect("notfound.jsp");
-        }
+      
 
     }
 

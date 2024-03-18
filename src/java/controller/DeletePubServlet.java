@@ -60,14 +60,22 @@ public class DeletePubServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PublisherDAO pld = new PublisherDAO();
+        HttpSession session = request.getSession();
+
         String idd = request.getParameter("idd");
         if (idd != null) {
             int id = Integer.parseInt(idd);
-            pld.delete(id);
-            HttpSession session = request.getSession();
-            List<Publisher> list = pld.getAll();
-            session.setAttribute("listpublisher1", list);
-            response.sendRedirect("listpublisher.jsp");
+            if (pld.delete(id)==true) {
+                List<Publisher> list = pld.getAll();
+                session.setAttribute("listpublisher1", list);
+                request.setAttribute("meaggesa", "Deleted Successfull");
+                request.getRequestDispatcher("listpublisher.jsp").forward(request, response);
+            } else {
+                List<Publisher> list = pld.getAll();
+                session.setAttribute("listpublisher1", list);
+                request.setAttribute("meaggesa", "This publisher cannot be deleted because it still appears in the database ");
+                request.getRequestDispatcher("listpublisher.jsp").forward(request, response);
+            }
 
         } else {
             response.sendRedirect("notfound.jsp");

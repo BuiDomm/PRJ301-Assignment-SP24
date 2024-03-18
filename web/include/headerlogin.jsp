@@ -31,10 +31,10 @@
                         <a class="navbar--fonts" href="index.html">Home</a>
                     </li>
                     <li class="navbar--item">
-                        <a class="navbar--fonts" href="notfound.jsp">Product</a>
+                        <a class="navbar--fonts" href="customerbook">Product</a>
                     </li>
                     <li class="navbar--item">
-                        <a class="navbar--fonts" href="notfound.jsp">Features</a>
+                        <a class="navbar--fonts" href="notfound,jsp">Features</a>
                     </li>
                     <li class="navbar--item">
                         <a class="navbar--fonts" href="blog.jsp">Blog</a>

@@ -63,14 +63,10 @@ public class CustomerBook extends HttpServlet {
 
         BookDAO bd = new BookDAO();
         List<Book> list = bd.getAll();
-        if (session.getAttribute("account") != null) {
+      
             request.setAttribute("listbook", list);
             request.getRequestDispatcher("rentbook.jsp").forward(request, response);
-        } 
-        else { 
-        response.sendRedirect("notfound.jsp");
-        
-        }
+      
 
     }
 

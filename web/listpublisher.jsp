@@ -18,9 +18,22 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     </head>
 
+
     <body>
+
+        <a href="managerview.jsp" style="
+           display:inline-block;
+           margin-top: 1.2rem;
+           margin-right: 180px;
+           color: blue;
+           margin-left: 35px;
+           font-family: Open Sans;
+           font-size: 1.5rem;
+           font-weight: 500;
+           line-height: 1rem;""><i class="fa-solid fa-arrow-left"></i> Back</a>
+
         <div class="container">
-       
+
             <div class="container--box">
                 <c:forEach var="c" items="${sessionScope.listpublisher1}">
                     <div class="card">
@@ -31,13 +44,14 @@
                                 <p class="text-subtitle">This is a subtitle</p>
                             </div>
 
-                            <a class="card-icon" href="deletepublisher?idd=${c.idPublisher}"><i class="fa-solid fa-trash"></i></a>
+                            <a class="card-iconn" href="deletepublisher?idd=${c.idPublisher}"><i class="fa-solid fa-trash"></i></a>
                         </div>
                     </div>
 
                 </c:forEach>
 
             </div>
+            <h2 style="text-align: center; color: white; font-size: 18px; margin-top: 25px;">${meaggesa}</h2>
 
         </div>
 

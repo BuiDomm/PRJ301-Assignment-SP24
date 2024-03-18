@@ -90,6 +90,7 @@ public class PublisherDAO extends DBContext implements BaseDAO<Publisher> {
             ps.setInt(1, id);
             int rowAffect = ps.executeUpdate();
             if (rowAffect > 0) {
+                return true;
             }
         } catch (Exception ex) {
             Logger.getLogger(PublisherDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -104,7 +105,7 @@ public class PublisherDAO extends DBContext implements BaseDAO<Publisher> {
 
         Publisher pp = pb.findById(1);
         
-        System.out.println(pb.getAll());
+        System.out.println(pb.delete(30));
     }
     
 }

@@ -10,10 +10,7 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -24,8 +21,7 @@ import java.io.StringWriter;
  *
  * @author ASUS
  */
-@WebFilter(filterName = "HandleFillter", urlPatterns = {"/*"})
-public class HandleFillter implements Filter {
+public class FilterAddToCart implements Filter {
 
     private static final boolean debug = true;
 
@@ -34,13 +30,13 @@ public class HandleFillter implements Filter {
     // configured. 
     private FilterConfig filterConfig = null;
 
-    public HandleFillter() {
+    public FilterAddToCart() {
     }
 
     private void doBeforeProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HandleFillter:DoBeforeProcessing");
+            log("FilterAddToCart:DoBeforeProcessing");
         }
 
         // Write code here to process the request and/or response before
@@ -68,7 +64,7 @@ public class HandleFillter implements Filter {
     private void doAfterProcessing(ServletRequest request, ServletResponse response)
             throws IOException, ServletException {
         if (debug) {
-            log("HandleFillter:DoAfterProcessing");
+            log("FilterAddToCart:DoAfterProcessing");
         }
 
         // Write code here to process the request and/or response after
@@ -104,48 +100,17 @@ public class HandleFillter implements Filter {
             throws IOException, ServletException {
 
         if (debug) {
-            log("HandleFillter:doFilter()");
+            log("FilterAddToCart:doFilter()");
         }
-
-        doBeforeProcessing(request, response);
-        // Viet o DAy nha 
-
         HttpServletRequest req = (HttpServletRequest) request;
-        HttpServletResponse res = (HttpServletResponse) response;
-        String uri = req.getServletPath();
         HttpSession session = req.getSession();
-        if (uri.endsWith(".jsp") && (session.getAttribute("account") == null) && (session.getAttribute("manageraccount") == null) && !uri.contains("loginForm.jsp") && !uri.contains("managerlogin.jsp") && !uri.contains("rentbook.jsp") && !uri.contains("register.jsp") && !uri.contains("setpassword.jsp") && !uri.contains("fogort.jsp") && !uri.contains("loader.jsp") && !uri.contains("loader_1.jsp") && !uri.contains("loader_2.jsp") && !uri.contains("checkrandom.jsp")) {
-            res.sendRedirect("notfound");
-        }
-
-        if (!uri.endsWith(".jsp") && session.getAttribute("account") != null && uri.contains("search")) {
-                res.sendRedirect("search");
-        }
-
-        Throwable problem = null;
-        try {
+        if (session.getAttribute("account") == null) {
+          req.setAttribute("error", "You need to login first." );
+          req.getRequestDispatcher("loginForm.jsp").forward(request, response);
+        } else {
             chain.doFilter(request, response);
-        } catch (Throwable t) {
-            // If an exception is thrown somewhere down the filter chain,
-            // we still want to execute our after processing, and then
-            // rethrow the problem after that.
-            problem = t;
-            t.printStackTrace();
         }
 
-        doAfterProcessing(request, response);
-
-        // If there was a problem, we want to rethrow it if it is
-        // a known type, otherwise log it.
-        if (problem != null) {
-            if (problem instanceof ServletException) {
-                throw (ServletException) problem;
-            }
-            if (problem instanceof IOException) {
-                throw (IOException) problem;
-            }
-            sendProcessingError(problem, response);
-        }
     }
 
     /**
@@ -177,7 +142,7 @@ public class HandleFillter implements Filter {
         this.filterConfig = filterConfig;
         if (filterConfig != null) {
             if (debug) {
-                log("HandleFillter:Initializing filter");
+                log("FilterAddToCart:Initializing filter");
             }
         }
     }
@@ -188,9 +153,9 @@ public class HandleFillter implements Filter {
     @Override
     public String toString() {
         if (filterConfig == null) {
-            return ("HandleFillter()");
+            return ("FilterAddToCart()");
         }
-        StringBuffer sb = new StringBuffer("HandleFillter(");
+        StringBuffer sb = new StringBuffer("FilterAddToCart(");
         sb.append(filterConfig);
         sb.append(")");
         return (sb.toString());

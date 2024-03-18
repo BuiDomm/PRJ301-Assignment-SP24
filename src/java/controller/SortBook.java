@@ -63,7 +63,7 @@ public class SortBook extends HttpServlet {
         HttpSession session = request.getSession();
         BookDAO bd = new BookDAO();
         List<Book> list = new ArrayList<>();
-        if (session.getAttribute("account") != null) {
+    
             String action = request.getParameter("action");
             if (action.equals("az")) {
                 list = bd.sortBookAZ();
@@ -85,7 +85,7 @@ public class SortBook extends HttpServlet {
                 response.sendRedirect("notfound.jsp");
             }
             
-        }
+        
     }
 
     /**
